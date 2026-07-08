@@ -4,6 +4,8 @@ Editorial portfolio website for the YouTube channel
 [**Gorkhali in Japan**](https://www.youtube.com/@gorkhaliinjapan) by Manoj Poudel —
 from the hills of Nepal to the heart of Tokyo.
 
+![Landing page](landingpage.png)
+
 ## Features
 
 - 🇬🇧 / 🇯🇵 Full English–Japanese language toggle (flag button)
@@ -26,6 +28,7 @@ css/style.css   — editorial design system (paper + ink + crimson)
 js/i18n.js      — EN/JA copy + video data
 js/main.js      — language/theme toggles, reveals, live stats
 Image.jpg       — portrait used in the About section
+landingpage.png — screenshot for this README
 ```
 
 Designed & built by Manoj Poudel.
