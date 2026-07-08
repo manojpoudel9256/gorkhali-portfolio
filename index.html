@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f2e9">
+  <meta name="description" content="Gorkhali in Japan — the honest blueprint for an IT career in Japan. By Manoj Poudel: Kathmandu → Sapporo → Tokyo. IT college reality, job hunting, real code, real life.">
+  <meta property="og:title" content="Gorkhali in Japan — Manoj Poudel">
+  <meta property="og:description" content="From the hills of Nepal to the heart of Tokyo. The honest blueprint for an IT career in Japan.">
+  <meta property="og:type" content="website">
+  <title>Gorkhali in Japan — Manoj Poudel</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='34' fill='%23c41230'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- scroll progress -->
+  <div class="progress" id="progress"></div>
+
+  <!-- ======= NAV ======= -->
+  <nav class="nav">
+    <a href="#top" class="wordmark"><span class="dot"></span><span data-i18n="brand">Gorkhali in Japan</span></a>
+    <div class="nav-links">
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#story" data-i18n="navStory">Story</a>
+      <a href="#skills" data-i18n="navCode">Skills</a>
+      <a href="#videos" data-i18n="navVideos">Videos</a>
+      <a href="#connect" data-i18n="navConnect">Connect</a>
+    </div>
+    <div class="nav-actions">
+      <button id="langBtn" class="pill-btn flag-btn" aria-label="Switch language" title="Switch language"><span id="langFlag">🇯🇵</span></button>
+      <button id="themeBtn" class="pill-btn theme" aria-label="Toggle theme">●</button>
+      <a class="btn-sub" href="https://www.youtube.com/@gorkhaliinjapan?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="subscribe">Subscribe</a>
+    </div>
+  </nav>
+
+  <!-- ======= HERO ======= -->
+  <header class="hero" id="top">
+    <p class="hero-eyebrow intro-1" data-i18n-html="heroEyebrow"></p>
+    <h1 class="hero-title">
+      <span class="line intro-2">GORKHALI</span>
+      <span class="line outline intro-3">IN JAPAN</span>
+    </h1>
+    <p class="hero-tag intro-4" data-i18n-html="heroTag"></p>
+    <div class="hero-cta intro-5">
+      <a class="btn-primary" href="#videos" data-i18n="heroCta1">Watch the journey ↓</a>
+      <a class="btn-ghost" href="https://www.youtube.com/@gorkhaliinjapan" target="_blank" rel="noopener">YouTube ↗</a>
+    </div>
+    <div class="hero-meta intro-6" id="heroMeta"></div>
+    <div class="loc-pill intro-6">
+      <span class="pulse-dot"></span>
+      <span data-i18n="heroLoc">Currently in Tokyo, Japan</span>
+      <span class="loc-tower">🗼</span>
+    </div>
+  </header>
+
+  <!-- ======= MARQUEE ======= -->
+  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+  <!-- ======= ABOUT ======= -->
+  <section class="section about" id="about">
+    <div class="about-grid">
+      <figure class="about-photo reveal">
+        <img src="Image.jpg" id="aboutImg" alt="Manoj Poudel — portrait by the harbor">
+      </figure>
+      <div class="about-body">
+        <div class="section-head reveal">
+          <span class="kicker" data-i18n="aboutKicker">About</span>
+          <h2 data-i18n="aboutTitle">The person behind the channel</h2>
+        </div>
+        <div class="loc-pill reveal">
+          <span class="pulse-dot"></span>
+          <span data-i18n="heroLoc">Currently in Tokyo, Japan</span>
+          <span class="loc-tower">🗼</span>
+        </div>
+        <p class="about-text reveal" data-i18n="aboutP1"></p>
+        <p class="about-text reveal" data-i18n="aboutP2"></p>
+        <div class="lang-block reveal">
+          <span class="lang-label" data-i18n="aboutLangsLabel">Speaks</span>
+          <div class="lang-chips" id="langChips"></div>
+        </div>
+        <div class="fact-row reveal" id="factRow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= STORY (full width) ======= -->
+  <section class="section story" id="story">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="storyKicker">The Story</span>
+      <h2 data-i18n-html="storyTitle"></h2>
+    </div>
+    <p class="story-intro reveal" data-i18n="storyIntro"></p>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+  <!-- ======= PILLARS ======= -->
+  <section class="section pillars">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="pillarsKicker">On the channel</span>
+      <h2 data-i18n="pillarsTitle">Four honest lanes</h2>
+    </div>
+    <div class="pillar-grid" id="pillarGrid"></div>
+  </section>
+
+  <!-- ======= SKILLS & TOOLS ======= -->
+  <section class="section skills" id="skills">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="skillsKicker">Behind the scenes</span>
+      <h2 data-i18n-html="skillsTitle"></h2>
+      <p class="section-sub reveal" data-i18n="skillsSub"></p>
+    </div>
+    <div class="skill-panel reveal" id="skillCols"></div>
+    <p class="repos-line reveal">
+      <span data-i18n="reposLabel">A little code on the side —</span>
+      <span id="reposLinks"></span>
+      <a class="repo-more" href="https://github.com/manojpoudel9256" target="_blank" rel="noopener" data-i18n="projCta">See the code on GitHub ↗</a>
+    </p>
+  </section>
+
+  <!-- ======= MOST VIEWED (live stats) ======= -->
+  <section class="section mostviewed" id="mostviewed">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="mvKicker">The big one</span>
+      <h2 data-i18n="mvTitle">Most viewed</h2>
+    </div>
+    <div class="mv-card reveal">
+      <a class="mv-thumb" id="mvThumbLink" href="#" target="_blank" rel="noopener">
+        <img id="mvThumb" src="" alt="">
+        <div class="vplay"></div>
+        <span class="vbadge" data-i18n="mvBadge">★ Most viewed</span>
+      </a>
+      <div class="mv-body">
+        <span class="live-chip"><span class="pulse-dot"></span><span data-i18n="mvLive">LIVE</span></span>
+        <h3 id="mvVideoTitle" data-i18n="mvVideoTitle"></h3>
+        <p class="mv-desc" data-i18n="mvDesc"></p>
+        <div class="mv-stats">
+          <div><b id="mvViewsNum">—</b><span data-i18n="mvViews">views</span></div>
+          <div><b id="mvLikesNum">—</b><span data-i18n="mvLikes">likes</span></div>
+          <div><b id="mvYearNum">2024</b><span data-i18n="mvYear">published</span></div>
+        </div>
+        <a class="btn-primary" id="mvWatchBtn" href="#" target="_blank" rel="noopener" data-i18n="mvWatch">Watch on YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= VIDEOS ======= -->
+  <section class="section videos" id="videos">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="vidKicker">Selected videos</span>
+      <h2 data-i18n="vidTitle">Watch the journey</h2>
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
+    <div class="videos-cta reveal">
+      <a class="btn-primary" href="https://www.youtube.com/@gorkhaliinjapan/videos" target="_blank" rel="noopener" data-i18n="vidCta">All videos on YouTube ↗</a>
+    </div>
+  </section>
+
+  <!-- ======= NUMBERS ======= -->
+  <section class="numbers reveal" id="numbers"></section>
+
+  <!-- ======= AUDIENCE ======= -->
+  <section class="section audience">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="audKicker">Made for</span>
+      <h2 data-i18n="audTitle">Who this is for</h2>
+    </div>
+    <div class="aud-grid" id="audGrid"></div>
+  </section>
+
+  <!-- ======= CONNECT ======= -->
+  <footer class="connect" id="connect">
+    <p class="kicker reveal" data-i18n="conKicker">Let's build together</p>
+    <h2 class="connect-title reveal" data-i18n-html="conTitle"></h2>
+    <div class="socials reveal">
+      <a href="https://www.youtube.com/@gorkhaliinjapan" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/manojpoudel_" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://x.com/manojpoudel9256" target="_blank" rel="noopener">X</a>
+      <a href="https://www.tiktok.com/@manojpoudel_" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://github.com/manojpoudel9256" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.facebook.com/profile.php?id=100070304402457" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <p class="foot-note reveal">© <span id="year"></span> Gorkhali in Japan · <span data-i18n="footBuilt">Designed &amp; built by Manoj Poudel</span></p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
