@@ -235,3 +235,21 @@ const VIDEOS = [
 /* Most-viewed video + live-stat fallbacks (verified live 2026-07-08) */
 const MOST_VIEWED = { id: "sFcuoPCLylQ", year: 2023, fallbackViews: 7783, fallbackLikes: 371 };
 const CHANNEL_ID = "UCBKB2A3BcpOb8YQAHgBEHcw";
+
+/* Tools & tech for the infinite logo marquee (real self-hosted SVG logos in /logos) */
+const LOGOS = [
+  { file: "blender", name: "Blender" },
+  { file: "unrealengine", name: "Unreal Engine" },
+  { file: "react", name: "React" },
+  { file: "javascript", name: "JavaScript" },
+  { file: "python", name: "Python" },
+  { file: "php", name: "PHP" },
+  { file: "nodejs", name: "Node.js" },
+  { file: "mysql", name: "MySQL" },
+  { file: "mongodb", name: "MongoDB" },
+  { file: "opencv", name: "OpenCV" },
+  { file: "html5", name: "HTML5" },
+  { file: "css3", name: "CSS3" },
+  { file: "git", name: "Git" },
+  { file: "github", name: "GitHub" }
+];

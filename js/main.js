@@ -31,18 +31,11 @@ function renderContent() {
   $("#pillarGrid").innerHTML = t.pillars.map(p => `
     <article class="pillar reveal"><span class="p-num">${p.num}</span><h3>${p.title}</h3><p>${p.text}</p></article>`).join("");
 
-  $("#skillCols").innerHTML = t.skillGroups.map(g => `
-    <div class="skill-col">
-      <span class="skill-label">${g.label}</span>
-      <ul class="skill-list">
-        ${g.items.map((s, i) => `
-        <li>
-          <span class="s-ico">${s.icon}</span>
-          <span class="s-name">${s.name}</span>
-          <span class="s-idx">${String(i + 1).padStart(2, "0")}</span>
-        </li>`).join("")}
-      </ul>
-    </div>`).join("");
+  // Infinite logo marquee — real tool/tech logos, duplicated for a seamless loop
+  const chips = LOGOS.map(l =>
+    `<span class="logo-chip"><span class="logo-ico"><img src="logos/${l.file}.svg" alt="" loading="lazy" width="26" height="26"></span><b>${l.name}</b></span>`
+  ).join("");
+  $("#logoTrack").innerHTML = chips + chips;
 
   $("#reposLinks").innerHTML = t.repos.map(r =>
     `<a href="https://github.com/manojpoudel9256/${r.repo}" target="_blank" rel="noopener">${r.name}</a>`

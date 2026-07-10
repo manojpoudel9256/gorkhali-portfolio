@@ -279,38 +279,52 @@ body {
 .pillar h3 { font-family: var(--serif); font-size: 1.32rem; font-weight: 700; margin: 10px 0 8px; }
 .pillar p { color: var(--ink-2); font-size: 0.93rem; }
 
-/* skills & tools — one editorial panel, two balanced "tracklist" columns */
-.skill-panel {
-  display: grid; background: var(--card); border: 1px solid var(--hairline);
-  border-radius: 26px; overflow: hidden; box-shadow: var(--shadow);
+/* skills — infinite, endless logo marquee (real self-hosted SVG logos) */
+.logo-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0;
+  /* fade both edges so logos glide in/out */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
-.skill-col { padding: 30px 30px 16px; }
-.skill-col + .skill-col { border-top: 1px solid var(--hairline); }
-@media (min-width: 820px) {
-  .skill-panel { grid-template-columns: 1fr 1fr; }
-  .skill-col + .skill-col { border-top: none; border-left: 1px solid var(--hairline); }
+.logo-track {
+  display: flex;
+  width: max-content;
+  gap: 16px;
+  animation: logoScroll 45s linear infinite;
+  will-change: transform;
 }
-.skill-label {
-  display: block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--crimson); margin-bottom: 10px;
+.logo-marquee:hover .logo-track { animation-play-state: paused; }
+/* left → right, seamless (track holds two identical halves) */
+@keyframes logoScroll {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
-.skill-list { list-style: none; }
-.skill-list li {
-  display: flex; align-items: center; gap: 15px;
-  padding: 13px 2px; border-bottom: 1px solid var(--hairline);
-  transition: padding-left 0.25s ease;
+.logo-chip {
+  flex: 0 0 auto;
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 11px 22px 11px 11px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow);
 }
-.skill-list li:last-child { border-bottom: none; }
-.skill-list li:hover { padding-left: 12px; }
-.s-ico {
-  width: 42px; height: 42px; border-radius: 13px; flex: 0 0 auto;
-  background: var(--crimson-soft); display: grid; place-items: center;
-  font-size: 1.15rem; transition: transform 0.25s;
+.logo-ico {
+  width: 46px; height: 46px; border-radius: 13px; flex: 0 0 auto;
+  /* white tile keeps every logo (incl. black GitHub/Unreal) crisp in light & dark */
+  background: #fff;
+  display: grid; place-items: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
-.skill-list li:hover .s-ico { transform: rotate(-8deg) scale(1.1); }
-.s-name { font-weight: 600; font-size: 0.98rem; transition: color 0.25s; }
-.skill-list li:hover .s-name { color: var(--crimson); }
-.s-idx { margin-left: auto; font-family: var(--serif); font-style: italic; font-size: 0.88rem; color: var(--ink-3); }
+.logo-ico img { width: 27px; height: 27px; display: block; }
+.logo-chip b {
+  font-weight: 600; font-size: 0.98rem; color: var(--ink);
+  white-space: nowrap; letter-spacing: -0.01em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
+}
 .repos-line {
   margin-top: 26px; font-size: 0.9rem; color: var(--ink-2);
   display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
