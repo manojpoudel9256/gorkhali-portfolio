@@ -282,18 +282,29 @@ body {
 /* skills — infinite, endless logo marquee (real self-hosted SVG logos) */
 .logo-marquee {
   position: relative;
+  /* full-bleed: span the whole viewport width out of the centered section */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   overflow: hidden;
-  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 6px 0;
   /* fade both edges so logos glide in/out */
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 .logo-track {
   display: flex;
   width: max-content;
   gap: 16px;
-  animation: logoScroll 45s linear infinite;
+  animation: logoScroll 48s linear infinite;
   will-change: transform;
+}
+/* second row scrolls the opposite way, slightly slower for an organic feel */
+.logo-track-rev {
+  animation-duration: 56s;
+  animation-direction: reverse;
 }
 .logo-marquee:hover .logo-track { animation-play-state: paused; }
 /* left → right, seamless (track holds two identical halves) */

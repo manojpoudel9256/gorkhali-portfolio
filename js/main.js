@@ -31,11 +31,14 @@ function renderContent() {
   $("#pillarGrid").innerHTML = t.pillars.map(p => `
     <article class="pillar reveal"><span class="p-num">${p.num}</span><h3>${p.title}</h3><p>${p.text}</p></article>`).join("");
 
-  // Infinite logo marquee — real tool/tech logos, duplicated for a seamless loop
-  const chips = LOGOS.map(l =>
-    `<span class="logo-chip"><span class="logo-ico"><img src="logos/${l.file}.svg" alt="" loading="lazy" width="26" height="26"></span><b>${l.name}</b></span>`
-  ).join("");
-  $("#logoTrack").innerHTML = chips + chips;
+  // Infinite logo marquee — real tool/tech logos, duplicated for a seamless loop.
+  // Two rows scroll in opposite directions (row 2 reversed for variety).
+  const chip = l =>
+    `<span class="logo-chip"><span class="logo-ico"><img src="logos/${l.file}.svg" alt="" loading="lazy" width="26" height="26"></span><b>${l.name}</b></span>`;
+  const row1 = LOGOS.map(chip).join("");
+  const row2 = [...LOGOS].reverse().map(chip).join("");
+  $("#logoTrack").innerHTML = row1 + row1;
+  $("#logoTrack2").innerHTML = row2 + row2;
 
   $("#reposLinks").innerHTML = t.repos.map(r =>
     `<a href="https://github.com/manojpoudel9256/${r.repo}" target="_blank" rel="noopener">${r.name}</a>`
