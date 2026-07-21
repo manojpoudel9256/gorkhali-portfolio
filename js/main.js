@@ -146,12 +146,18 @@ $("#langBtn").addEventListener("click", () => { lang = lang === "ja" ? "en" : "j
 /* ---------- mobile nav menu ---------- */
 const navEl = document.querySelector(".nav");
 const menuBtn = $("#menuBtn");
-function closeMenu() { navEl.classList.remove("menu-open"); menuBtn.setAttribute("aria-expanded", "false"); }
+function closeMenu() {
+  navEl.classList.remove("menu-open");
+  menuBtn.setAttribute("aria-expanded", "false");
+  document.documentElement.style.overflow = "";
+}
 menuBtn.addEventListener("click", () => {
   const open = navEl.classList.toggle("menu-open");
   menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  document.documentElement.style.overflow = open ? "hidden" : "";
 });
 document.querySelectorAll(".nav-links a").forEach(a => a.addEventListener("click", closeMenu));
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
 document.addEventListener("click", (e) => { if (navEl.classList.contains("menu-open") && !navEl.contains(e.target)) closeMenu(); });
 
 /* ---------- scroll reveals ---------- */
