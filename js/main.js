@@ -139,7 +139,7 @@ fetchLiveStats();
 function applyTheme() {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem(THEME_KEY, theme);
-  $('meta[name="theme-color"]').setAttribute("content", theme === "dark" ? "#131118" : "#f7f2e9");
+  $('meta[name="theme-color"]').setAttribute("content", theme === "dark" ? "#0f0f17" : "#f1efe6");
 }
 $("#themeBtn").addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; applyTheme(); });
 $("#langBtn").addEventListener("click", () => { lang = lang === "ja" ? "en" : "ja"; renderContent(); });
