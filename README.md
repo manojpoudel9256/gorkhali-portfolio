@@ -4,10 +4,12 @@ Editorial portfolio website for the YouTube channel
 [**Gorkhali in Japan**](https://www.youtube.com/@gorkhaliinjapan) by Manoj Poudel —
 from the hills of Nepal to the heart of Tokyo.
 
-![Landing page](landingpage.png)
+![Landing page](landingpage.jpg)
 
 ## Features
 
+- 🎬 Full-bleed cinematic photo hero with a bottom info bar (since/route/
+  languages) and a full-screen premium mobile menu
 - 🇬🇧 / 🇯🇵 Full English–Japanese language toggle (flag button)
 - 🌙 / ☀️ Dark & light themes
 - 🔴 Live stats — real-time subscriber count, total views, and most-viewed video
@@ -24,11 +26,12 @@ GitHub Pages (framework preset: **Other**, no build command).
 
 ```
 index.html      — page structure
-css/style.css   — editorial design system (paper + ink + crimson)
+css/style.css   — design system (paper + ink, Indigo & Marigold accents)
 js/i18n.js      — EN/JA copy + video data
-js/main.js      — language/theme toggles, reveals, live stats
+js/main.js      — language/theme toggles, mobile menu, reveals, live stats
 Image.jpg       — portrait used in the About section
-landingpage.png — screenshot for this README
+hero-bg.webp    — hero background photo
+landingpage.jpg — screenshot for this README
 ```
 
 Designed & built by Manoj Poudel.
