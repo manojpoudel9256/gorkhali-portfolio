@@ -22,7 +22,6 @@ function renderContent() {
   document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = t[el.dataset.i18nHtml]; if (v) el.innerHTML = v; });
 
   $("#heroMeta").innerHTML = t.heroMeta.map(m => `<span class="hb-item">${m}</span>`).join("");
-  $("#marqueeTrack").innerHTML = `<span>${t.marquee}</span><span>${t.marquee}</span>`;
 
   $("#timeline").innerHTML = t.timeline.map(x => `
     <li class="reveal"><span class="t-year">${x.year}</span>

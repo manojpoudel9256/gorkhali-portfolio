@@ -216,20 +216,6 @@ body {
 .intro-6 { animation-delay: 0.52s; }
 @keyframes rise { from { opacity: 0; transform: translateY(34px); } to { opacity: 1; transform: none; } }
 
-/* ---------- marquee ---------- */
-.marquee {
-  background: var(--indigo); color: #fff; overflow: hidden;
-  /* symmetric bleed instead of scale(); root overflow-x:clip trims the excess,
-     so the document never grows wider than the screen (no iOS right-side gap) */
-  width: 104vw; margin-left: -2vw;
-  transform: rotate(-1.6deg); padding: 13px 0; margin-top: 8px;
-}
-.marquee-track { display: flex; white-space: nowrap; animation: scroll 30s linear infinite; }
-.marquee-track span {
-  font-family: var(--serif); font-weight: 600; font-size: 1.02rem; letter-spacing: 0.14em; padding-right: 14px;
-}
-@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
 /* ---------- sections ---------- */
 .section { max-width: 1180px; margin: 0 auto; padding: clamp(70px, 12vh, 150px) 5vw 0; }
 .kicker {
@@ -565,9 +551,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .intro-1, .intro-2, .intro-3, .intro-4, .intro-5, .intro-6 { opacity: 1; transform: none; animation: none; transition: none; }
-  .marquee-track { animation: none; }
 }
 
 /* ?nofx=1 — motion disabled for automated screenshots/testing */
 html.nofx .reveal, html.nofx [class*="intro-"] { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
-html.nofx .marquee-track { animation: none !important; }
