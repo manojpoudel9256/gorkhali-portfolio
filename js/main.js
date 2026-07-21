@@ -144,6 +144,17 @@ function applyTheme() {
 $("#themeBtn").addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; applyTheme(); });
 $("#langBtn").addEventListener("click", () => { lang = lang === "ja" ? "en" : "ja"; renderContent(); });
 
+/* ---------- mobile nav menu ---------- */
+const navEl = document.querySelector(".nav");
+const menuBtn = $("#menuBtn");
+function closeMenu() { navEl.classList.remove("menu-open"); menuBtn.setAttribute("aria-expanded", "false"); }
+menuBtn.addEventListener("click", () => {
+  const open = navEl.classList.toggle("menu-open");
+  menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+});
+document.querySelectorAll(".nav-links a").forEach(a => a.addEventListener("click", closeMenu));
+document.addEventListener("click", (e) => { if (navEl.classList.contains("menu-open") && !navEl.contains(e.target)) closeMenu(); });
+
 /* ---------- scroll reveals ---------- */
 let io;
 function observeReveals() {

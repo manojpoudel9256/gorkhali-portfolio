@@ -88,6 +88,21 @@ body {
 .nav-links a:hover { color: var(--ink); }
 .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 .nav-actions { display: flex; align-items: center; gap: 9px; flex: 0 1 auto; min-width: 0; }
+
+/* hamburger — hidden on desktop, shown only when nav-links collapse */
+.menu-btn {
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; width: 34px; height: 34px; padding: 0; border-radius: 999px;
+  border: 1px solid var(--hairline); background: var(--card); cursor: pointer;
+  flex: 0 0 auto;
+}
+.menu-btn span {
+  display: block; width: 15px; height: 2px; background: var(--ink);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav.menu-open .menu-btn span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav.menu-open .menu-btn span:nth-child(2) { opacity: 0; }
+.nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 .pill-btn {
   height: 34px; min-width: 34px; padding: 0 12px; border-radius: 999px; cursor: pointer;
   border: 1px solid var(--hairline); background: var(--card); color: var(--ink);
@@ -141,9 +156,9 @@ body {
   margin-bottom: 22px;
 }
 .hero-title-solo span {
-  display: block; text-transform: none; font-style: italic;
-  font-size: 0.22em; font-weight: 500; letter-spacing: 0.01em;
-  color: var(--gold); margin-top: 6px;
+  display: block; font-style: normal;
+  font-size: 0.56em; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--gold); margin-top: 2px;
 }
 .hero-tag {
   font-family: var(--serif); font-size: clamp(1.05rem, 2.2vw, 1.55rem);
@@ -497,11 +512,28 @@ body {
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
 .reveal.in { opacity: 1; transform: none; }
 
-/* ---------- responsive nav ---------- */
+/* ---------- responsive nav — collapsible mobile menu ---------- */
 @media (max-width: 900px) {
-  .nav-links { display: none; }
   .nav { padding-left: 14px; padding-right: 14px; gap: 8px; }
   .wordmark { font-size: 0.94rem; }
+  .menu-btn { display: flex; }
+
+  /* nav-links becomes a dropdown panel under the fixed nav, opened by .menu-btn */
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 0;
+    background: var(--card);
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: var(--shadow);
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+  }
+  .nav.menu-open .nav-links { max-height: 60vh; opacity: 1; overflow-y: auto; }
+  .nav-links a {
+    display: block; width: 100%; padding: 16px 20px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-links a::after { display: none; }
 }
 
 /* ---------- responsive hero bar ---------- */
