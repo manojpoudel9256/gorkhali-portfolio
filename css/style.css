@@ -61,7 +61,7 @@ body {
 
 /* ---------- nav ---------- */
 .nav {
-  position: sticky; top: 0; z-index: 50;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: max(14px, env(safe-area-inset-top)) 5vw 14px;
   background: color-mix(in srgb, var(--paper) 82%, transparent);
@@ -73,7 +73,7 @@ body {
   color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 8px;
   white-space: nowrap; min-width: 0; /* allowed to shrink so the nav never overflows */
 }
-.wordmark span:last-child { overflow: hidden; text-overflow: ellipsis; }
+.wordmark span:last-child { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .wordmark .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); flex: 0 0 auto; }
 .nav-links { display: flex; gap: 26px; flex: 0 0 auto; }
 .nav-links a { white-space: nowrap; }
@@ -87,7 +87,7 @@ body {
 }
 .nav-links a:hover { color: var(--ink); }
 .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-.nav-actions { display: flex; align-items: center; gap: 9px; flex: 0 0 auto; }
+.nav-actions { display: flex; align-items: center; gap: 9px; flex: 0 1 auto; min-width: 0; }
 .pill-btn {
   height: 34px; min-width: 34px; padding: 0 12px; border-radius: 999px; cursor: pointer;
   border: 1px solid var(--hairline); background: var(--card); color: var(--ink);
@@ -106,73 +106,88 @@ body {
 }
 .btn-sub:hover { transform: translateY(-2px); background: var(--gold); color: var(--ink); box-shadow: 0 10px 24px var(--gold-soft); }
 
-/* ---------- hero ---------- */
+/* ---------- hero — full-bleed cinematic photo ---------- */
 .hero {
-  position: relative; padding: clamp(64px, 13vh, 150px) 5vw clamp(52px, 10vh, 110px);
-  max-width: 1280px; margin: 0 auto;
+  position: relative;
+  height: 100vh; height: 100svh; min-height: 560px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding-top: clamp(90px, 15vh, 140px);
   overflow: hidden;
+  color: #fff;
 }
-/* faint paper grain — breaks up the flat vector look without a texture image */
-.hero::before {
-  content: "";
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  opacity: 0.5; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: 62% 42%; /* keeps Fuji + the figure in frame on narrow screens */
+  display: block;
 }
-html[data-theme="dark"] .hero::before { mix-blend-mode: screen; opacity: 0.7; }
-/* mountain + rising-sun mark — a small bespoke corner motif instead of a stock icon */
-.hero-mark {
-  position: absolute; top: clamp(58px, 11vh, 130px); right: 5vw; z-index: 0;
-  width: clamp(64px, 8vw, 108px); height: auto; color: var(--indigo); opacity: 0.9;
+.hero-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(10, 9, 15, 0.55) 0%, rgba(10, 9, 15, 0.08) 26%, rgba(10, 9, 15, 0.08) 55%, rgba(10, 9, 15, 0.82) 100%);
 }
-.hero-mark .sun { fill: var(--gold); stroke: none; }
-.hero-mark .peak { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
-@media (max-width: 780px) { .hero-mark { display: none; } }
 
-.hero-eyebrow { position: relative; z-index: 1; font-size: 0.92rem; color: var(--ink-2); letter-spacing: 0.05em; margin-bottom: 24px; }
-.hero-eyebrow strong { color: var(--ink); }
-.hero-title {
-  position: relative; z-index: 1;
-  font-family: var(--serif); font-weight: 800;
-  font-size: clamp(3.2rem, 13.5vw, 12.5rem);
-  line-height: 0.94; letter-spacing: -0.02em; text-transform: uppercase;
-  margin-bottom: 32px;
+.hero-inner { position: relative; z-index: 1; padding: 0 5vw; }
+.hero-eyebrow {
+  font-size: 0.92rem; color: rgba(255, 255, 255, 0.82); letter-spacing: 0.05em; margin-bottom: 22px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
-.hero-title .line { display: block; will-change: transform; }
-/* duotone gradient fill instead of an outline-stroke — the journey rendered
-   as a blend from indigo (Japan) into marigold gold (Nepal) */
-.hero-title .outline {
-  background: linear-gradient(100deg, var(--indigo) 12%, var(--gold) 88%);
-  -webkit-background-clip: text; background-clip: text;
-  color: transparent;
-  -webkit-text-stroke: 0;
+.hero-eyebrow strong { color: #fff; }
+.hero-title-solo {
+  font-family: var(--serif); font-weight: 800; color: #fff;
+  font-size: clamp(3.6rem, 12vw, 9.5rem);
+  line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.35);
+  margin-bottom: 22px;
+}
+.hero-title-solo span {
+  display: block; text-transform: none; font-style: italic;
+  font-size: 0.22em; font-weight: 500; letter-spacing: 0.01em;
+  color: var(--gold); margin-top: 6px;
 }
 .hero-tag {
-  position: relative; z-index: 1;
-  font-family: var(--serif); font-size: clamp(1.15rem, 2.6vw, 1.8rem);
-  font-weight: 400; color: var(--ink-2); line-height: 1.5; margin-bottom: 36px;
+  font-family: var(--serif); font-size: clamp(1.05rem, 2.2vw, 1.55rem);
+  font-weight: 400; color: rgba(255, 255, 255, 0.9); line-height: 1.5; max-width: 40rem;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
 }
 .hero-tag em:first-of-type { color: var(--gold); font-style: italic; }
-.hero-tag em:last-of-type { color: var(--indigo); font-style: italic; }
-.hero-cta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 40px; }
+.hero-tag em:last-of-type { color: #cdd3ff; font-style: italic; }
+
+/* bottom info bar — frosted strip of quick facts + a solid CTA block */
+.hero-bar {
+  position: relative; z-index: 1;
+  display: flex; align-items: stretch;
+  flex-wrap: wrap;
+  background: rgba(10, 9, 15, 0.42);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.hb-info { display: flex; flex-wrap: wrap; flex: 1 1 auto; }
+.hb-item {
+  display: flex; align-items: center;
+  padding: 20px clamp(16px, 3vw, 30px);
+  font-size: 0.86rem; font-weight: 600; letter-spacing: 0.03em; color: #fff;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  white-space: nowrap;
+}
+.hb-cta {
+  flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+  padding: 20px clamp(22px, 4vw, 40px);
+  background: var(--gold); color: var(--ink); text-decoration: none;
+  font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em; white-space: nowrap;
+  transition: background 0.25s, color 0.25s;
+  margin-left: auto;
+}
+.hb-cta:hover { background: #fff; }
+
+/* general primary button — used by Most Viewed / Videos CTAs */
 .btn-primary {
+  display: inline-block;
   background: var(--ink); color: var(--paper); text-decoration: none;
   padding: 15px 30px; border-radius: 999px; font-weight: 700; font-size: 0.94rem;
   transition: transform 0.2s, background 0.2s, color 0.2s;
 }
 .btn-primary:hover { transform: translateY(-2px); background: var(--gold); color: var(--ink); }
-.btn-ghost {
-  color: var(--ink); text-decoration: none; padding: 15px 30px; border-radius: 999px;
-  border: 1.5px solid var(--hairline); font-weight: 700; font-size: 0.94rem;
-  transition: border-color 0.2s, color 0.2s, transform 0.2s;
-}
-.btn-ghost:hover { border-color: var(--indigo); color: var(--indigo); transform: translateY(-2px); }
-.hero-meta {
-  position: relative; z-index: 1;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
-  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
-}
-.hero-meta i { color: var(--gold); font-style: normal; font-size: 0.7rem; }
 
 /* hero intro animation — base state stays visible; "both" fills the delay,
    so if animations ever fail to run the hero still shows */
@@ -488,12 +503,30 @@ html[data-theme="dark"] .hero::before { mix-blend-mode: screen; opacity: 0.7; }
   .nav { padding-left: 14px; padding-right: 14px; gap: 8px; }
   .wordmark { font-size: 0.94rem; }
 }
+
+/* ---------- responsive hero bar ---------- */
+@media (max-width: 700px) {
+  .hero { padding-top: clamp(78px, 13vh, 120px); }
+  .hero-title-solo { font-size: clamp(3rem, 16vw, 5rem); }
+  .hero-bar { flex-direction: column; }
+  .hb-info { width: 100%; }
+  .hb-item {
+    flex: 1 1 auto; white-space: normal; padding: 14px 16px;
+    font-size: 0.78rem; border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .hb-cta {
+    width: 100%; margin-left: 0; justify-content: center; padding: 16px;
+  }
+}
 @media (max-width: 430px) {
   .nav { padding-left: 12px; padding-right: 12px; }
-  .wordmark { font-size: 0.88rem; gap: 6px; }
+  .wordmark { font-size: 0.8rem; gap: 6px; }
   .wordmark .dot { width: 10px; height: 10px; }
-  .nav-actions { gap: 6px; }
+  .nav-actions { gap: 5px; }
   .pill-btn { height: 32px; min-width: 32px; padding: 0 8px; }
+  /* theme toggle is the least essential control at this width — the site
+     already respects the OS light/dark preference automatically */
+  .pill-btn.theme { display: none; }
   .flag-btn { font-size: 1.02rem; }
   .btn-sub { padding: 9px 12px; font-size: 0.68rem; letter-spacing: 0.03em; }
 }
