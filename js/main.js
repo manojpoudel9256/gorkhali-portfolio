@@ -164,7 +164,23 @@ menuBtn.addEventListener("click", () => {
   menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
   document.documentElement.style.overflow = open ? "hidden" : "";
 });
-document.querySelectorAll(".nav-links a").forEach(a => a.addEventListener("click", closeMenu));
+document.querySelectorAll(".nav-links a").forEach(a => {
+  const ico = a.querySelector(".nav-ico");
+  if (ico) ico.addEventListener("animationend", () => ico.classList.remove("play"));
+  a.addEventListener("click", (e) => {
+    // replay the section icon's tap animation (remove → reflow → add)
+    if (ico) { ico.classList.remove("play"); void ico.offsetWidth; ico.classList.add("play"); }
+    // only the mobile full-screen menu delays navigation so the animation shows
+    if (!navEl.classList.contains("menu-open")) return;
+    e.preventDefault();
+    const href = a.getAttribute("href");
+    setTimeout(() => {
+      closeMenu();
+      const target = href && document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 420);
+  });
+});
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
 document.addEventListener("click", (e) => { if (navEl.classList.contains("menu-open") && !navEl.contains(e.target)) closeMenu(); });
 

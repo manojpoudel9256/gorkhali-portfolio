@@ -77,6 +77,10 @@ body {
 .wordmark .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); flex: 0 0 auto; }
 .nav-links { display: flex; gap: 26px; flex: 0 0 auto; }
 .nav-links a { white-space: nowrap; }
+/* section icons + the in-menu theme button live only in the mobile full-screen
+   menu — hidden in the desktop bar (desktop keeps the ● theme dot instead) */
+.nav-ico { display: none; }
+.menu-theme-btn { display: none; }
 .nav-links a {
   color: var(--ink-2); text-decoration: none; font-size: 0.85rem; font-weight: 600;
   letter-spacing: 0.05em; text-transform: uppercase; position: relative;
@@ -509,20 +513,18 @@ body {
   .nav-actions { position: relative; z-index: 2; }
 
   /* full-viewport takeover menu, opened by .menu-btn.
-     Uses a FIXED dark base (not var(--ink)) so the overlay stays dark in both
-     light and dark themes — otherwise --ink flips to cream in dark mode and the
-     light menu text becomes invisible. */
+     Theme-aware: background and text both use theme vars so they flip together
+     (paper bg + ink text) and stay readable in light and dark alike. */
   .nav-links {
     position: fixed; inset: 0; z-index: 1;
     flex-direction: column; justify-content: center; align-items: stretch;
     gap: 0; padding: 0 8vw;
     background:
-      radial-gradient(60% 46% at 88% 12%, rgba(240, 176, 76, 0.14), transparent 65%),
-      radial-gradient(65% 55% at 8% 92%, rgba(139, 155, 255, 0.16), transparent 68%),
-      #111019;
+      radial-gradient(60% 46% at 88% 12%, var(--gold-soft), transparent 65%),
+      radial-gradient(65% 55% at 8% 92%, var(--indigo-soft), transparent 68%),
+      var(--paper);
     opacity: 0; visibility: hidden;
     transition: opacity 0.4s ease, visibility 0s linear 0.4s;
-    counter-reset: navcount;
   }
   .nav.menu-open .nav-links {
     opacity: 1; visibility: visible;
@@ -530,9 +532,9 @@ body {
   }
 
   .nav-links a {
-    display: flex; align-items: center; gap: 18px; width: 100%;
-    padding: 4.4vh 0; border-bottom: 1px solid rgba(241, 239, 230, 0.14);
-    color: rgba(241, 239, 230, 0.6);
+    display: flex; align-items: center; gap: 20px; width: 100%;
+    padding: 4.2vh 0; border-bottom: 1px solid var(--hairline);
+    color: var(--ink-3);
     font-family: var(--serif); font-weight: 600;
     font-size: clamp(1.7rem, 7.5vw, 2.5rem); letter-spacing: -0.01em;
     text-transform: none;
@@ -540,18 +542,20 @@ body {
     transition: color 0.3s ease, opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .nav-links a::before {
-    counter-increment: navcount;
-    content: counter(navcount, decimal-leading-zero);
-    font-family: var(--sans); font-size: 0.8rem; font-weight: 700;
-    letter-spacing: 0.06em; color: var(--gold); flex: 0 0 auto;
+  /* section icon (replaces the old 01–05 numbers) */
+  .nav-links .nav-ico {
+    display: grid; place-items: center; flex: 0 0 auto;
+    width: clamp(30px, 8vw, 40px); height: clamp(30px, 8vw, 40px);
+    color: var(--gold);
   }
+  .nav-links .nav-ico svg { width: 100%; height: 100%; overflow: visible; }
+  .nav-links .nav-ico svg * { transform-box: fill-box; transform-origin: center; }
   .nav-links a::after {
     content: "→"; margin-left: auto; flex: 0 0 auto;
     color: var(--gold); opacity: 0; transform: translateX(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .nav-links a:hover, .nav-links a:active { color: #fff; }
+  .nav-links a:hover, .nav-links a:active { color: var(--ink); }
   .nav-links a:hover::after, .nav-links a:active::after { opacity: 1; transform: none; }
 
   /* staggered rise, one link at a time, only while the menu is open */
@@ -567,27 +571,68 @@ body {
   .menu-theme-btn {
     display: flex; align-items: center; gap: 12px;
     margin-top: 28px; padding: 14px 22px;
-    border: 1px solid rgba(241, 239, 230, 0.22); border-radius: 999px;
-    background: rgba(241, 239, 230, 0.06); color: rgba(241, 239, 230, 0.85);
+    border: 1px solid var(--hairline); border-radius: 999px;
+    background: var(--card); color: var(--ink-2);
     font-family: var(--sans); font-size: 0.92rem; font-weight: 600;
     cursor: pointer; align-self: flex-start;
     opacity: 0; transform: translateY(22px);
     transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s, color 0.25s;
   }
-  .menu-theme-btn:hover { border-color: var(--gold); color: #fff; }
+  .menu-theme-btn:hover { border-color: var(--gold); color: var(--ink); }
   .menu-theme-btn .mt-icon { font-size: 1.05rem; }
   .nav.menu-open .menu-theme-btn { opacity: 1; transform: none; transition-delay: 0.4s; }
+}
 
-  /* while the menu is open, force the header controls to a light-on-dark look
-     so they stay visible against the always-dark overlay in either theme */
-  .nav.menu-open .menu-btn {
-    background: rgba(241, 239, 230, 0.08); border-color: rgba(241, 239, 230, 0.28);
-  }
-  .nav.menu-open .menu-btn span { background: #f1efe6; }
-  .nav.menu-open .flag-btn {
-    background: rgba(241, 239, 230, 0.08); border-color: rgba(241, 239, 230, 0.28);
-  }
+/* ---------- animated section icons (12-principles micro-interactions) ----------
+   Each plays once on tap via the .play class (added in JS). Easing carries the
+   slow-in/slow-out; keyframes add anticipation + follow-through overshoot. */
+.nav-ico.play.ico-about svg   { animation: icoAbout   0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.nav-ico.play.ico-story svg   { animation: icoStory   0.7s cubic-bezier(0.45, 0, 0.25, 1); }
+.nav-ico.play.ico-skills svg  { animation: icoSkills  0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.nav-ico.play.ico-videos svg  { animation: icoVideos  0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.nav-ico.play.ico-connect svg { animation: icoConnect 0.7s cubic-bezier(0.34, 1.4, 0.5, 1); }
+
+/* About — a friendly "greet": anticipation squash, stretch up, settle back */
+@keyframes icoAbout {
+  0%   { transform: scale(1, 1) translateY(0); }
+  18%  { transform: scale(1.1, 0.88) translateY(2px); }
+  48%  { transform: scale(0.94, 1.08) translateY(-4px); }
+  74%  { transform: scale(1.03, 0.98) translateY(1px); }
+  100% { transform: scale(1, 1) translateY(0); }
+}
+/* Story — a page turning: rotate along an arc, peek back, settle */
+@keyframes icoStory {
+  0%   { transform: perspective(220px) rotateY(0); }
+  45%  { transform: perspective(220px) rotateY(-42deg); }
+  72%  { transform: perspective(220px) rotateY(14deg); }
+  100% { transform: perspective(220px) rotateY(0); }
+}
+/* Skills — code brackets pull in (anticipation) then spread, settle */
+@keyframes icoSkills {
+  0%   { transform: scaleX(1); }
+  26%  { transform: scaleX(0.8); }
+  62%  { transform: scaleX(1.16); }
+  100% { transform: scaleX(1); }
+}
+/* Videos — play nudge: draw back, shoot forward with overshoot, settle */
+@keyframes icoVideos {
+  0%   { transform: translateX(0); }
+  22%  { transform: translateX(-2.5px); }
+  58%  { transform: translateX(3.5px); }
+  82%  { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+/* Connect — paper plane takes off along an arc, then returns */
+@keyframes icoConnect {
+  0%   { transform: translate(0, 0) rotate(0); }
+  20%  { transform: translate(-2px, 2px) rotate(-10deg); }
+  60%  { transform: translate(7px, -7px) rotate(12deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-ico.play svg { animation: none !important; }
 }
 
 @media (max-width: 900px) and (prefers-reduced-motion: reduce) {
