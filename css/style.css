@@ -508,15 +508,18 @@ body {
   .menu-btn { display: flex; }
   .nav-actions { position: relative; z-index: 2; }
 
-  /* full-viewport takeover menu, opened by .menu-btn */
+  /* full-viewport takeover menu, opened by .menu-btn.
+     Uses a FIXED dark base (not var(--ink)) so the overlay stays dark in both
+     light and dark themes — otherwise --ink flips to cream in dark mode and the
+     light menu text becomes invisible. */
   .nav-links {
     position: fixed; inset: 0; z-index: 1;
     flex-direction: column; justify-content: center; align-items: stretch;
     gap: 0; padding: 0 8vw;
     background:
-      radial-gradient(60% 46% at 88% 12%, var(--gold-soft), transparent 65%),
-      radial-gradient(65% 55% at 8% 92%, var(--indigo-soft), transparent 68%),
-      var(--ink);
+      radial-gradient(60% 46% at 88% 12%, rgba(240, 176, 76, 0.14), transparent 65%),
+      radial-gradient(65% 55% at 8% 92%, rgba(139, 155, 255, 0.16), transparent 68%),
+      #111019;
     opacity: 0; visibility: hidden;
     transition: opacity 0.4s ease, visibility 0s linear 0.4s;
     counter-reset: navcount;
@@ -575,6 +578,16 @@ body {
   .menu-theme-btn:hover { border-color: var(--gold); color: #fff; }
   .menu-theme-btn .mt-icon { font-size: 1.05rem; }
   .nav.menu-open .menu-theme-btn { opacity: 1; transform: none; transition-delay: 0.4s; }
+
+  /* while the menu is open, force the header controls to a light-on-dark look
+     so they stay visible against the always-dark overlay in either theme */
+  .nav.menu-open .menu-btn {
+    background: rgba(241, 239, 230, 0.08); border-color: rgba(241, 239, 230, 0.28);
+  }
+  .nav.menu-open .menu-btn span { background: #f1efe6; }
+  .nav.menu-open .flag-btn {
+    background: rgba(241, 239, 230, 0.08); border-color: rgba(241, 239, 230, 0.28);
+  }
 }
 
 @media (max-width: 900px) and (prefers-reduced-motion: reduce) {
