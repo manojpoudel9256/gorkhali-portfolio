@@ -107,7 +107,12 @@ const COPY = {
 
     conKicker: "Let's build together",
     conTitle: `Say <em>namaste</em>.`,
-    footBuilt: "Designed & built by Manoj Poudel"
+    conLead: "Planning your move to Japan, hiring, collaborating, or just want to say hi? I'm one message away. Follow the journey and let's build the roadmap together.",
+    conSocialsLabel: "Find me on",
+    footBuilt: "Designed & built by Manoj Poudel",
+    footBackTop: "Back to top",
+    footTagline: "From the hills of Nepal to the heart of Tokyo.",
+    footRights: "All rights reserved.",
   },
 
   ja: {
@@ -216,7 +221,12 @@ const COPY = {
 
     conKicker: "一緒に作ろう",
     conTitle: `<em>ナマステ</em>、と言おう。`,
-    footBuilt: "デザイン・制作：マノジュ・ポーデル"
+    conLead: "日本への留学準備、採用、コラボ、ただの挨拶でも — メッセージひとつで届きます。旅を追いかけて、一緒にロードマップを作りましょう。",
+    conSocialsLabel: "フォローはこちら",
+    footBuilt: "デザイン・制作：マノジュ・ポーデル",
+    footBackTop: "トップへ戻る",
+    footTagline: "ネパールの丘から、東京の中心へ。",
+    footRights: "無断転載を禁じます。",
   }
 };
 
