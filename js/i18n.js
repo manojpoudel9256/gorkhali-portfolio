@@ -3,7 +3,7 @@
 const COPY = {
   en: {
     brand: "Gorkhali in Japan",
-    navAbout: "About", navStory: "Story", navCode: "Skills", navVideos: "Videos", navConnect: "Connect",
+    navAbout: "About", navStory: "Story", navCode: "Skills", navVideos: "Videos", navContact: "Contact", navConnect: "Connect",
     subscribe: "Subscribe",
 
     heroEyebrow: `A channel by <strong>Manoj Poudel</strong> — software engineer in Tokyo`,
@@ -105,6 +105,25 @@ const COPY = {
       { icon: "🗾", title: "The Curious", text: "You just love honest life-in-Japan stories — snow, shrines, convenience stores, and the occasional hot spring." }
     ],
 
+    contactKicker: "Contact",
+    contactTitle: `Have a question?<br>Let's <em>talk</em>.`,
+    contactLead: "Studying in Japan, job hunting, a collaboration, or just a question about the channel — send it over and it lands straight in my inbox.",
+    contactPt1: "Usually replies within a few days",
+    contactPt2: "English · 日本語 · नेपाली welcome",
+    contactPt3: "No question is too small",
+    contactName: "Name",
+    contactEmail: "Email",
+    contactSubject: "Subject",
+    contactMessage: "Message",
+    phName: "e.g. Manoj Poudel",
+    phEmail: "you@example.com",
+    phSubject: "What's this about?",
+    phMessage: "Write your message…",
+    contactSend: "Send message",
+    contactSending: "Sending…",
+    contactSuccess: "Thank you! Your message is on its way — I'll reply soon.",
+    contactError: "Something went wrong. Please try again in a moment.",
+
     conKicker: "Let's build together",
     conTitle: `Say <em>namaste</em>.`,
     conLead: "Planning your move to Japan, hiring, collaborating, or just want to say hi? I'm one message away. Follow the journey and let's build the roadmap together.",
@@ -117,7 +136,7 @@ const COPY = {
 
   ja: {
     brand: "ゴルカリ・イン・ジャパン",
-    navAbout: "プロフィール", navStory: "ストーリー", navCode: "スキル", navVideos: "動画", navConnect: "つながる",
+    navAbout: "プロフィール", navStory: "ストーリー", navCode: "スキル", navVideos: "動画", navContact: "お問い合わせ", navConnect: "つながる",
     subscribe: "登録する",
 
     heroEyebrow: `<strong>マノジュ・ポーデル</strong>のチャンネル — 東京のソフトウェアエンジニア`,
@@ -218,6 +237,25 @@ const COPY = {
       { icon: "💻", title: "就活中の人", text: "すでに日本にいて、就活シーズンを前に、苦労して内定を勝ち取った先輩の戦略が必要な人。" },
       { icon: "🗾", title: "日本が好きな人", text: "雪、神社、コンビニ、たまの温泉 — 正直な日本の日常の物語がただ好きな人。" }
     ],
+
+    contactKicker: "お問い合わせ",
+    contactTitle: `質問がありますか？<br><em>話しましょう</em>。`,
+    contactLead: "日本への留学、就活、コラボ、チャンネルへの質問でも — 送っていただければ、そのまま私の受信箱に届きます。",
+    contactPt1: "通常、数日以内に返信します",
+    contactPt2: "英語 · 日本語 · नेपाली 対応",
+    contactPt3: "どんな小さな質問でも歓迎",
+    contactName: "お名前",
+    contactEmail: "メール",
+    contactSubject: "件名",
+    contactMessage: "メッセージ",
+    phName: "例：マノジュ・ポーデル",
+    phEmail: "you@example.com",
+    phSubject: "ご用件は？",
+    phMessage: "メッセージを入力…",
+    contactSend: "メッセージを送る",
+    contactSending: "送信中…",
+    contactSuccess: "ありがとうございます！メッセージを送信しました。近日中に返信します。",
+    contactError: "エラーが発生しました。少し時間をおいて再度お試しください。",
 
     conKicker: "一緒に作ろう",
     conTitle: `<em>ナマステ</em>、と言おう。`,

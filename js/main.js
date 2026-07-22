@@ -20,6 +20,7 @@ function renderContent() {
 
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if (v) el.textContent = v; });
   document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = t[el.dataset.i18nHtml]; if (v) el.innerHTML = v; });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { const v = t[el.dataset.i18nPh]; if (v) el.placeholder = v; });
 
   $("#heroMeta").innerHTML = t.heroMeta.map(m => `<span class="hb-item">${m}</span>`).join("");
 
@@ -183,6 +184,40 @@ document.querySelectorAll(".nav-links a").forEach(a => {
 });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
 document.addEventListener("click", (e) => { if (navEl.classList.contains("menu-open") && !navEl.contains(e.target)) closeMenu(); });
+
+/* ---------- contact form (Formspree AJAX — no page redirect) ---------- */
+const contactForm = $("#contactForm");
+if (contactForm) {
+  const statusEl = $("#contactStatus");
+  const sendBtn = contactForm.querySelector(".contact-send");
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const t = COPY[lang];
+    statusEl.textContent = ""; statusEl.className = "contact-status";
+    const label = sendBtn.textContent;
+    sendBtn.disabled = true; sendBtn.textContent = t.contactSending || "Sending…";
+    try {
+      const res = await fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { "Accept": "application/json" }
+      });
+      if (res.ok) {
+        contactForm.reset();
+        statusEl.textContent = t.contactSuccess;
+        statusEl.classList.add("ok");
+      } else {
+        statusEl.textContent = t.contactError;
+        statusEl.classList.add("err");
+      }
+    } catch (err) {
+      statusEl.textContent = t.contactError;
+      statusEl.classList.add("err");
+    } finally {
+      sendBtn.disabled = false; sendBtn.textContent = label;
+    }
+  });
+}
 
 /* ---------- scroll reveals ---------- */
 let io;

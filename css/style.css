@@ -479,6 +479,63 @@ body {
 .aud h3 { font-family: var(--serif); font-size: 1.18rem; margin-bottom: 8px; }
 .aud p { color: var(--ink-2); font-size: 0.93rem; }
 
+/* contact — form section (submits to Formspree via AJAX) */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 72px); align-items: start;
+}
+.contact-intro { padding-top: 6px; }
+.contact-title {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.05; letter-spacing: -0.01em;
+  margin: 12px 0 20px;
+}
+.contact-title em {
+  font-style: italic;
+  background: linear-gradient(100deg, var(--indigo) 12%, var(--gold) 88%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.contact-lead { font-size: 1rem; color: var(--ink-2); line-height: 1.75; max-width: 34rem; margin-bottom: 28px; }
+.contact-points { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.contact-points li { display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: var(--ink-2); font-weight: 500; }
+.contact-points svg { width: 22px; height: 22px; color: var(--gold); flex: 0 0 auto; }
+
+.contact-form {
+  background: var(--card); border: 1px solid var(--hairline); border-radius: 22px;
+  padding: clamp(22px, 3.5vw, 34px); box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.cf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cf-field { display: flex; flex-direction: column; gap: 7px; }
+.cf-field label {
+  font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+.cf-field input, .cf-field textarea {
+  font-family: var(--sans); font-size: 0.95rem; color: var(--ink);
+  background: var(--paper); border: 1.5px solid var(--hairline); border-radius: 12px;
+  padding: 13px 15px; width: 100%; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical;
+}
+.cf-field input::placeholder, .cf-field textarea::placeholder { color: var(--ink-3); opacity: 0.75; }
+.cf-field input:focus, .cf-field textarea:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+.contact-send { width: 100%; text-align: center; border: none; cursor: pointer; margin-top: 4px; }
+.contact-send:disabled { opacity: 0.6; cursor: default; }
+.contact-status { font-size: 0.9rem; font-weight: 600; line-height: 1.5; min-height: 1.2em; margin: 0; }
+.contact-status.ok { color: #15925f; }
+.contact-status.err { color: #d0402a; }
+html[data-theme="dark"] .contact-status.ok { color: #55d69b; }
+html[data-theme="dark"] .contact-status.err { color: #ff7a63; }
+
+@media (max-width: 820px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 460px) {
+  .cf-row { grid-template-columns: 1fr; }
+}
+
 /* connect — full-height premium closing section */
 .connect {
   position: relative;
@@ -644,6 +701,7 @@ body {
   .nav.menu-open .nav-links a:nth-child(3) { transition-delay: 0.22s; }
   .nav.menu-open .nav-links a:nth-child(4) { transition-delay: 0.28s; }
   .nav.menu-open .nav-links a:nth-child(5) { transition-delay: 0.34s; }
+  .nav.menu-open .nav-links a:nth-child(6) { transition-delay: 0.40s; }
 
   /* theme lives in the full-screen menu on mobile instead of the tight header */
   .pill-btn.theme { display: none; }
@@ -660,7 +718,7 @@ body {
   }
   .menu-theme-btn:hover { border-color: var(--gold); color: var(--ink); }
   .menu-theme-btn .mt-icon { font-size: 1.05rem; }
-  .nav.menu-open .menu-theme-btn { opacity: 1; transform: none; transition-delay: 0.4s; }
+  .nav.menu-open .menu-theme-btn { opacity: 1; transform: none; transition-delay: 0.46s; }
 }
 
 /* ---------- animated section icons (12-principles micro-interactions) ----------
@@ -671,6 +729,7 @@ body {
 .nav-ico.play.ico-skills svg  { animation: icoSkills  0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .nav-ico.play.ico-videos svg  { animation: icoVideos  0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .nav-ico.play.ico-connect svg { animation: icoConnect 0.7s cubic-bezier(0.34, 1.4, 0.5, 1); }
+.nav-ico.play.ico-contact svg { animation: icoContact 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
 /* About — a friendly "greet": anticipation squash, stretch up, settle back */
 @keyframes icoAbout {
@@ -708,6 +767,14 @@ body {
   20%  { transform: translate(-2px, 2px) rotate(-10deg); }
   60%  { transform: translate(7px, -7px) rotate(12deg); }
   100% { transform: translate(0, 0) rotate(0); }
+}
+/* Contact — envelope "posted": dip (anticipation), toss up with squash/stretch, settle */
+@keyframes icoContact {
+  0%   { transform: translateY(0) scale(1, 1); }
+  20%  { transform: translateY(2px) scale(1.06, 0.94); }
+  55%  { transform: translateY(-4px) scale(0.97, 1.05); }
+  80%  { transform: translateY(1px) scale(1.01, 0.99); }
+  100% { transform: translateY(0) scale(1, 1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
