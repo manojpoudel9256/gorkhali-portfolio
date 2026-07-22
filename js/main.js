@@ -139,8 +139,16 @@ function applyTheme() {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem(THEME_KEY, theme);
   $('meta[name="theme-color"]').setAttribute("content", theme === "dark" ? "#0f0f17" : "#f1efe6");
+  // menu toggle shows the mode you'll switch TO, same convention as the language flag
+  const icon = $("#menuThemeIcon"), label = $("#menuThemeLabel");
+  if (icon && label) {
+    icon.textContent = theme === "dark" ? "☀️" : "🌙";
+    label.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+  }
 }
-$("#themeBtn").addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; applyTheme(); });
+function toggleTheme() { theme = theme === "dark" ? "light" : "dark"; applyTheme(); }
+$("#themeBtn").addEventListener("click", toggleTheme);
+$("#menuThemeBtn").addEventListener("click", toggleTheme);
 $("#langBtn").addEventListener("click", () => { lang = lang === "ja" ? "en" : "ja"; renderContent(); });
 
 /* ---------- mobile nav menu ---------- */

@@ -558,6 +558,23 @@ body {
   .nav.menu-open .nav-links a:nth-child(3) { transition-delay: 0.22s; }
   .nav.menu-open .nav-links a:nth-child(4) { transition-delay: 0.28s; }
   .nav.menu-open .nav-links a:nth-child(5) { transition-delay: 0.34s; }
+
+  /* theme lives in the full-screen menu on mobile instead of the tight header */
+  .pill-btn.theme { display: none; }
+  .menu-theme-btn {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 28px; padding: 14px 22px;
+    border: 1px solid rgba(241, 239, 230, 0.22); border-radius: 999px;
+    background: rgba(241, 239, 230, 0.06); color: rgba(241, 239, 230, 0.85);
+    font-family: var(--sans); font-size: 0.92rem; font-weight: 600;
+    cursor: pointer; align-self: flex-start;
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s, color 0.25s;
+  }
+  .menu-theme-btn:hover { border-color: var(--gold); color: #fff; }
+  .menu-theme-btn .mt-icon { font-size: 1.05rem; }
+  .nav.menu-open .menu-theme-btn { opacity: 1; transform: none; transition-delay: 0.4s; }
 }
 
 @media (max-width: 900px) and (prefers-reduced-motion: reduce) {
@@ -584,9 +601,6 @@ body {
   .wordmark .dot { width: 10px; height: 10px; }
   .nav-actions { gap: 5px; }
   .pill-btn { height: 32px; min-width: 32px; padding: 0 8px; }
-  /* theme toggle is the least essential control at this width — the site
-     already respects the OS light/dark preference automatically */
-  .pill-btn.theme { display: none; }
   .flag-btn { font-size: 1.02rem; }
   .btn-sub { padding: 9px 12px; font-size: 0.68rem; letter-spacing: 0.03em; }
 }
