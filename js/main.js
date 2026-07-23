@@ -33,12 +33,14 @@ function renderContent() {
 
   // Infinite logo marquee — real tool/tech logos, duplicated for a seamless loop.
   // Two rows scroll in opposite directions (row 2 reversed for variety).
+  // Motion is driven by the rAF loop set up below (marqueeInit).
   const chip = l =>
-    `<span class="logo-chip"><span class="logo-ico"><img src="logos/${l.file}.svg" alt="" loading="lazy" width="26" height="26"></span><b>${l.name}</b></span>`;
+    `<span class="logo-chip"><span class="logo-ico"><img src="logos/${l.file}.svg" alt="" loading="eager" decoding="async" width="26" height="26"></span><b>${l.name}</b></span>`;
   const row1 = LOGOS.map(chip).join("");
   const row2 = [...LOGOS].reverse().map(chip).join("");
   $("#logoTrack").innerHTML = row1 + row1;
   $("#logoTrack2").innerHTML = row2 + row2;
+  if (window.marqueeMeasure) window.marqueeMeasure();
 
   $("#reposLinks").innerHTML = t.repos.map(r =>
     `<a href="https://github.com/manojpoudel9256/${r.repo}" target="_blank" rel="noopener">${r.name}</a>`
@@ -283,3 +285,40 @@ if (["light", "dark"].includes(qs.get("theme"))) theme = qs.get("theme");
 if (qs.get("nofx")) document.documentElement.classList.add("nofx");
 applyTheme();
 renderContent();
+
+/* ---------- logo marquee — requestAnimationFrame driver ----------
+   Runs on its own regardless of taps/hover, starts immediately, wraps
+   seamlessly. Rows move in opposite directions at slightly different speeds. */
+(function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const nofx = document.documentElement.classList.contains("nofx");
+  const defs = [
+    { el: $("#logoTrack"), speed: 34 },   // px/sec, →
+    { el: $("#logoTrack2"), speed: -40 }  // ←
+  ];
+  const tracks = defs.filter(d => d.el).map(d => ({ ...d, x: 0, half: 0 }));
+  if (!tracks.length) return;
+
+  function measure() { tracks.forEach(t => { t.half = t.el.scrollWidth / 2; }); }
+  window.marqueeMeasure = measure;
+  measure();
+  addEventListener("load", measure);
+  addEventListener("resize", measure);
+
+  if (reduce || nofx) return; // respect reduced-motion / test flag: stay static
+
+  let last = performance.now();
+  function tick(now) {
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    for (const t of tracks) {
+      if (!t.half) { t.half = t.el.scrollWidth / 2; continue; }
+      t.x -= t.speed * dt;
+      if (t.x <= -t.half) t.x += t.half;
+      if (t.x > 0) t.x -= t.half;
+      t.el.style.transform = "translate3d(" + t.x.toFixed(2) + "px,0,0)";
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
