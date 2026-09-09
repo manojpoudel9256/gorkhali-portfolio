@@ -21,6 +21,7 @@
   --card: #fbf9f3;
   --shadow: 0 18px 50px rgba(22, 21, 31, 0.10);
   --red: #f5003c;
+  --red-soft: rgba(245, 0, 60, 0.08);
   --poster-gutter: clamp(18px, 6.5vw, 112px);
   --serif: "Fraunces", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --sans: "Inter", "Segoe UI", system-ui, "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
@@ -41,6 +42,7 @@ html[data-theme="dark"] {
   --card: #171725;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
   --red: #ff2e5f;
+  --red-soft: rgba(255, 46, 95, 0.12);
 }
 
 html { background: var(--paper); scroll-behavior: smooth; }
@@ -797,7 +799,10 @@ html[data-theme="dark"] .contact-status.err { color: #ff7a63; }
   /* backdrop-filter on .nav creates a new containing block for fixed-position
      descendants, which would confine the full-screen .nav-links overlay to the
      navbar's own box instead of the viewport — drop it here so inset:0 works */
-  .nav { padding-left: 14px; padding-right: 14px; gap: 8px; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .nav { padding-left: 14px; padding-right: 14px; gap: 8px; }
+  .nav, .nav.scrolled, .nav.menu-open {
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
   .wordmark { position: relative; z-index: 2; font-size: 0.94rem; }
   .menu-btn { display: flex; }
   .nav-actions { position: relative; z-index: 2; }
@@ -814,8 +819,8 @@ html[data-theme="dark"] .contact-status.err { color: #ff7a63; }
     padding: max(76px, calc(env(safe-area-inset-top) + 68px)) 8vw calc(28px + env(safe-area-inset-bottom));
     overflow-y: auto; -webkit-overflow-scrolling: touch;
     background:
-      radial-gradient(60% 46% at 88% 12%, var(--gold-soft), transparent 65%),
-      radial-gradient(65% 55% at 8% 92%, var(--indigo-soft), transparent 68%),
+      radial-gradient(60% 46% at 88% 12%, var(--red-soft), transparent 65%),
+      radial-gradient(65% 55% at 8% 92%, var(--red-soft), transparent 68%),
       var(--paper);
     opacity: 0; visibility: hidden;
     transition: opacity 0.4s ease, visibility 0s linear 0.4s;
@@ -825,10 +830,11 @@ html[data-theme="dark"] .contact-status.err { color: #ff7a63; }
     transition: opacity 0.4s ease, visibility 0s linear 0s;
   }
 
+  .nav-links a + a::before { content: none; }
   .nav-links a {
     display: flex; align-items: center; gap: 18px; width: 100%; flex: 0 0 auto;
     padding: clamp(11px, 2.3vh, 20px) 0; border-bottom: 1px solid var(--hairline);
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-family: var(--serif); font-weight: 600;
     font-size: clamp(1.5rem, 5.6vw, 2rem); letter-spacing: -0.01em; line-height: 1.1;
     text-transform: none;
@@ -840,13 +846,14 @@ html[data-theme="dark"] .contact-status.err { color: #ff7a63; }
   .nav-links .nav-ico {
     display: grid; place-items: center; flex: 0 0 auto;
     width: clamp(28px, 7vw, 36px); height: clamp(28px, 7vw, 36px);
-    color: var(--gold);
+    color: var(--red);
   }
   .nav-links .nav-ico svg { width: 100%; height: 100%; overflow: visible; }
   .nav-links .nav-ico svg * { transform-box: fill-box; transform-origin: center; }
   .nav-links a::after {
-    content: "→"; margin-left: auto; flex: 0 0 auto;
-    color: var(--gold); opacity: 0; transform: translateX(-10px);
+    content: "→"; position: static; margin-left: auto; flex: 0 0 auto;
+    width: auto; height: auto; background: none;
+    color: var(--red); opacity: 0; transform: translateX(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
   .nav-links a:hover, .nav-links a:active { color: var(--ink); }
@@ -874,7 +881,7 @@ html[data-theme="dark"] .contact-status.err { color: #ff7a63; }
     transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s, color 0.25s;
   }
-  .menu-theme-btn:hover { border-color: var(--gold); color: var(--ink); }
+  .menu-theme-btn:hover { border-color: var(--red); color: var(--ink); }
   .menu-theme-btn .mt-icon { font-size: 1.05rem; }
   .nav.menu-open .menu-theme-btn { opacity: 1; transform: none; transition-delay: 0.46s; }
 }
