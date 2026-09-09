@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#f1efe6">
+  <meta name="theme-color" content="#f8f7f6">
   <meta name="description" content="Gorkhali in Japan — the honest blueprint for an IT career in Japan. By Manoj Poudel: Kathmandu → Sapporo → Tokyo. IT college reality, job hunting, real code, real life.">
   <meta property="og:title" content="Gorkhali in Japan — Manoj Poudel">
   <meta property="og:description" content="From the hills of Nepal to the heart of Tokyo. The honest blueprint for an IT career in Japan.">
@@ -12,7 +12,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2316151f'/><circle cx='66' cy='34' r='15' fill='%23d99a34'/><path d='M10 82 L36 42 L50 62 L64 36 L90 82 Z' fill='none' stroke='%238b9bff' stroke-width='7' stroke-linejoin='round' stroke-linecap='round'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700;800;900&family=Sacramento&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
 
   <!-- ======= NAV ======= -->
   <nav class="nav">
-    <a href="#top" class="wordmark"><span class="dot"></span><span data-i18n="brand">Gorkhali in Japan</span></a>
+    <a href="#top" class="wordmark"><span class="wm-chip" aria-hidden="true"><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M8 5.2v13.6L19.4 12z"/></svg></span><span data-i18n="brand">Gorkhali in Japan</span></a>
     <div class="nav-links">
       <a href="#about">
         <span class="nav-ico ico-about" aria-hidden="true">
@@ -87,28 +87,51 @@
       <button id="menuBtn" class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <button id="langBtn" class="pill-btn flag-btn" aria-label="Switch language" title="Switch language"><span id="langFlag">🇯🇵</span></button>
-      <button id="themeBtn" class="pill-btn theme" aria-label="Toggle theme">●</button>
-      <a class="btn-sub" href="https://www.youtube.com/@gorkhaliinjapan?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="subscribe">Subscribe</a>
+      <a class="icon-btn" href="https://www.youtube.com/@gorkhaliinjapan/search" target="_blank" rel="noopener" aria-label="Search the channel" title="Search the channel">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.2 16.2 21 21"/></svg>
+      </a>
+      <button id="langBtn" class="icon-btn flag-btn" aria-label="Switch language" title="Switch language"><span id="langFlag">JP</span></button>
+      <button id="themeBtn" class="icon-btn theme" aria-label="Toggle theme"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg></button>
+      <a class="btn-sub" href="https://www.youtube.com/@gorkhaliinjapan?sub_confirmation=1" target="_blank" rel="noopener"><span class="wm-chip" aria-hidden="true"><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M8 5.2v13.6L19.4 12z"/></svg></span><span data-i18n="subscribe">Subscribe</span></a>
     </div>
   </nav>
 
-  <!-- ======= HERO — full-bleed cinematic photo ======= -->
+  <!-- ======= HERO — full-bleed photo, headline left ======= -->
   <header class="hero" id="top">
+    <!-- Two registered layers at identical dimensions: the plate has the
+         subject erased and the frame widened leftwards, the subject rides
+         above it. That lets the play frame pass behind the figure. -->
     <div class="hero-bg" aria-hidden="true">
-      <img src="hero-bg.webp" alt="" fetchpriority="high">
-      <div class="hero-scrim"></div>
+      <img src="hero-roses.webp" alt="" fetchpriority="high">
+      <div class="hero-wash"></div>
     </div>
+
+    <a class="hero-frame intro-3" id="heroFrameLink" href="https://www.youtube.com/@gorkhaliinjapan/videos" target="_blank" rel="noopener">
+      <span class="hf-box" aria-hidden="true"></span>
+      <span class="hf-play" aria-hidden="true"><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M8 5.2v13.6L19.4 12z"/></svg></span>
+      <span class="sr-only" data-i18n="heroFrameLabel">Watch the most viewed video</span>
+    </a>
+
+    <img class="hero-subject intro-2" src="hero-subject.webp" alt="Manoj Poudel" fetchpriority="high">
 
     <div class="hero-inner">
-      <p class="hero-eyebrow intro-1" data-i18n-html="heroEyebrow"></p>
-      <h1 class="hero-title-solo intro-2">GORKHALI<span>IN JAPAN</span></h1>
-      <p class="hero-tag intro-4" data-i18n-html="heroTag"></p>
+      <span class="hero-rule intro-1" aria-hidden="true"></span>
+      <p class="hero-welcome intro-1" data-i18n="heroWelcome">Welcome to my channel</p>
+      <h1 class="hero-title intro-2" data-i18n-html="heroTitle">Gorkhali<br><span>in </span><em>Japan</em></h1>
+      <p class="hero-sub intro-3" data-i18n="heroSub">From Nepal to Japan &mdash; IT, life, travel &amp; the journey in between.</p>
+      <a class="hero-cta intro-4" href="#videos">
+        <span class="hc-play" aria-hidden="true"><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M8 5.2v13.6L19.4 12z"/></svg></span>
+        <span data-i18n="heroCta">Watch the journey</span>
+        <span class="hc-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
 
-    <div class="hero-bar intro-6">
-      <div class="hb-info" id="heroMeta"></div>
-      <a class="hb-cta" href="#videos" data-i18n="heroCta1">Watch the journey ↓</a>
+    <div class="hero-foot">
+      <p class="hero-route intro-5" data-i18n-html="heroRoute">Nepal <span>&rarr;</span> Japan</p>
+      <a class="hero-scroll intro-5" href="#about">
+        <span class="hs-mouse" aria-hidden="true"></span>
+        <span data-i18n="heroScroll">Scroll Down</span>
+      </a>
     </div>
   </header>
 

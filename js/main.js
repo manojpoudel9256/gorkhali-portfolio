@@ -15,14 +15,12 @@ function renderContent() {
   document.documentElement.lang = lang === "ja" ? "ja" : "en";
   localStorage.setItem(LANG_KEY, lang);
   // flag shows the language you'll switch TO
-  $("#langFlag").textContent = lang === "ja" ? "🇬🇧" : "🇯🇵";
+  $("#langFlag").textContent = lang === "ja" ? "EN" : "JP";
   $("#langBtn").title = lang === "ja" ? "Switch to English" : "日本語に切り替え";
 
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if (v) el.textContent = v; });
   document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = t[el.dataset.i18nHtml]; if (v) el.innerHTML = v; });
   document.querySelectorAll("[data-i18n-ph]").forEach(el => { const v = t[el.dataset.i18nPh]; if (v) el.placeholder = v; });
-
-  $("#heroMeta").innerHTML = t.heroMeta.map(m => `<span class="hb-item">${m}</span>`).join("");
 
   $("#timeline").innerHTML = t.timeline.map(x => `
     <li class="reveal"><span class="t-year">${x.year}</span>
@@ -76,6 +74,7 @@ function renderContent() {
 
   // most viewed card
   const mvUrl = `https://www.youtube.com/watch?v=${MOST_VIEWED.id}`;
+  const frame = $("#heroFrameLink"); if (frame) frame.href = mvUrl;
   $("#mvThumbLink").href = mvUrl;
   $("#mvWatchBtn").href = mvUrl;
   $("#mvThumb").src = `https://i.ytimg.com/vi/${MOST_VIEWED.id}/hq720.jpg`;
@@ -141,7 +140,7 @@ fetchLiveStats();
 function applyTheme() {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem(THEME_KEY, theme);
-  $('meta[name="theme-color"]').setAttribute("content", theme === "dark" ? "#0f0f17" : "#f1efe6");
+  $('meta[name="theme-color"]').setAttribute("content", theme === "dark" ? "#0f0f17" : "#f8f7f6");
   // menu toggle shows the mode you'll switch TO, same convention as the language flag
   const icon = $("#menuThemeIcon"), label = $("#menuThemeLabel");
   if (icon && label) {
@@ -264,11 +263,14 @@ function observeCounts() {
   document.querySelectorAll("[data-count]").forEach(el => cio.observe(el));
 }
 
-/* ---------- scroll progress bar ---------- */
+/* ---------- scroll progress bar + nav state ---------- */
 function updateProgress() {
   const doc = document.documentElement;
   const max = doc.scrollHeight - innerHeight;
   $("#progress").style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+  // the poster hero reads as one paper field, so the nav bar only gets its
+  // frosted background once you scroll off it
+  navEl.classList.toggle("scrolled", window.scrollY > 24);
 }
 addEventListener("scroll", updateProgress, { passive: true });
 addEventListener("resize", updateProgress);

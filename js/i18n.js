@@ -6,11 +6,14 @@ const COPY = {
     navAbout: "About", navStory: "Story", navCode: "Skills", navVideos: "Videos", navContact: "Contact", navConnect: "Connect",
     subscribe: "Subscribe",
 
-    heroEyebrow: `A channel by <strong>Manoj Poudel</strong> — software engineer in Tokyo`,
-    heroTag: `From the hills of <em>Nepal</em> to the heart of <em>Tokyo</em> —<br>the honest blueprint for an IT career in Japan.`,
-    heroCta1: "Watch the journey ↓",
+    heroWelcome: "Welcome to my channel",
+    heroTitle: `Gorkhali<br><span>in </span><em>Japan</em>`,
+    heroSub: "From Nepal to Japan — IT, life, travel & the journey in between.",
+    heroCta: "Watch the journey",
+    heroFrameLabel: "Watch the videos on YouTube",
+    heroRoute: `Nepal <span>→</span> Japan`,
+    heroScroll: "Scroll Down",
     heroLoc: "Currently in Tokyo, Japan",
-    heroMeta: ["Since 2023", "Sapporo → Tokyo", "EN · नेपाली · 日本語 · हिन्दी"],
 
     marquee: "IT CAREER IN JAPAN ✦ SENMON GAKKO ✦ JOB HUNTING ✦ HOKKAIDO VLOGS ✦ NAITEI ✦ TOKYO LIFE ✦ NEPALI IN JAPAN ✦ CODE ✦ ",
 
@@ -139,11 +142,14 @@ const COPY = {
     navAbout: "プロフィール", navStory: "ストーリー", navCode: "スキル", navVideos: "動画", navContact: "お問い合わせ", navConnect: "つながる",
     subscribe: "登録する",
 
-    heroEyebrow: `<strong>マノジュ・ポーデル</strong>のチャンネル — 東京のソフトウェアエンジニア`,
-    heroTag: `<em>ネパール</em>の丘から、<em>東京</em>の中心へ —<br>日本でITキャリアを築くための、正直な設計図。`,
-    heroCta1: "旅を見る ↓",
+    heroWelcome: "ようこそ、私のチャンネルへ",
+    heroTitle: `ゴルカリ<br><span>イン・</span><em>ジャパン</em>`,
+    heroSub: "ネパールから日本へ — IT、暮らし、旅、その道のすべて。",
+    heroCta: "旅を見る",
+    heroFrameLabel: "YouTubeで動画を見る",
+    heroRoute: `ネパール <span>→</span> 日本`,
+    heroScroll: "スクロール",
     heroLoc: "現在：東京在住",
-    heroMeta: ["2023年から", "札幌 → 東京", "EN · नेपाली · 日本語 · हिन्दी"],
 
     marquee: "日本のITキャリア ✦ 専門学校 ✦ 就活 ✦ 北海道Vlog ✦ 内定 ✦ 東京ライフ ✦ 在日ネパール人 ✦ コード ✦ ",
 
