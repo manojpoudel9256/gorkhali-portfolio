@@ -5,6 +5,7 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const strings = JSON.parse($("#i18n")?.textContent || "{}");
 
   /* ---------- player ---------- */
   const dlg = $("#player");
@@ -42,12 +43,62 @@
 
   /* ---------- reveal sections once ---------- */
   if (!reduced && "IntersectionObserver" in window) {
-    const items = $$(".sec-head, .videos, .road, .about-copy, .timeline, .work-copy, .contact, .more");
+    const items = $$(".sec-head, .stats, .charts, .videos, .mw, .road, .legend, .about-copy, .timeline, .faq-list, .follow-card, .work-copy, .contact, .more, .foot-brand");
     items.forEach((el) => el.classList.add("reveal"));
     const io = new IntersectionObserver((entries) => {
-      for (const en of entries) if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      for (const en of entries) if (en.isIntersecting) {
+        en.target.classList.add("in");
+        $$("[data-count]", en.target).forEach(countUp);
+        io.unobserve(en.target);
+      }
     }, { rootMargin: "0px 0px -8% 0px" });
     items.forEach((el) => io.observe(el));
+  }
+
+  /* ---------- numbers count up once (the final value is already in the HTML) ---------- */
+  function countUp(el) {
+    const end = +el.dataset.count, dec = +el.dataset.dec || 0, fmt = new Intl.NumberFormat(strings.locale || "en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    if (!isFinite(end)) return;
+    const t0 = performance.now(), dur = 1400;
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt.format(end * e);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  /* ---------- chart tooltips (the same numbers are in the table view for keyboard / screen readers) ---------- */
+  const tip = $(".tip");
+  if (tip && matchMedia("(hover: hover)").matches) {
+    let cur = null;
+    document.addEventListener("pointerover", (e) => {
+      const el = e.target.closest("[data-tip]");
+      if (el === cur) return;
+      cur = el;
+      if (!el) { tip.hidden = true; return; }
+      $("b", tip).textContent = el.dataset.tip;
+      $(".mono", tip).textContent = el.dataset.tipMeta || "";
+      tip.hidden = false;
+    });
+    document.addEventListener("pointermove", (e) => {
+      if (tip.hidden) return;
+      const w = tip.offsetWidth, h = tip.offsetHeight;
+      tip.style.left = Math.min(innerWidth - w - 8, Math.max(8, e.clientX - w / 2)) + "px";
+      tip.style.top = (e.clientY - h - 14 < 8 ? e.clientY + 18 : e.clientY - h - 14) + "px";
+    });
+    addEventListener("scroll", () => { tip.hidden = true; cur = null; }, { passive: true });
+  }
+
+  /* ---------- footer emblem tilts toward the pointer ---------- */
+  const emblem = $(".emblem"), tilt = $(".emblem-tilt");
+  if (emblem && tilt && !reduced && matchMedia("(hover: hover)").matches) {
+    emblem.addEventListener("pointermove", (e) => {
+      const r = emblem.getBoundingClientRect();
+      tilt.style.setProperty("--ry", ((e.clientX - r.left) / r.width - 0.5) * 24 + "deg");
+      tilt.style.setProperty("--rx", -((e.clientY - r.top) / r.height - 0.5) * 24 + "deg");
+    });
+    emblem.addEventListener("pointerleave", () => { tilt.style.setProperty("--rx", "0deg"); tilt.style.setProperty("--ry", "0deg"); });
   }
 
   /* ---------- language: remember the choice ---------- */
@@ -76,7 +127,6 @@
 
   /* ---------- fresh videos between deploys ---------- */
   const grid = $("#vgrid"), featured = $(".vcard.featured");
-  const strings = JSON.parse($("#i18n")?.textContent || "{}");
   if (grid && featured && strings.series) {
     fetch("/api/videos", { signal: AbortSignal.timeout(6000) })
       .then((r) => (r.ok ? r.json() : null))

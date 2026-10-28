@@ -22,6 +22,23 @@ The channel promises *"The Blueprint for Your IT Career in Japan"*, so the site 
 | `--crimson` | `#c8102e` | Nepal-flag red, the one action colour, callouts |
 | `--hl` | `#ffe36b` | the single highlighter stroke in the headline |
 
+### Series colours (charts)
+
+Validated with the dataviz palette checker on paper: colour-blind safe (all pairs), all ≥ 3:1 contrast.
+
+| Series | Colour |
+|---|---|
+| Shuukatsu | `#c8102e` crimson |
+| Senmon gakko | `#2a5ea8` blue |
+| Life in Japan | `#11866a` green |
+| Real projects | `#b07d0e` ochre |
+
+Charts always have a legend, and every number is also in the "view as a table" view.
+
+## Logo
+
+A glossy 3D tile drawn after the channel picture: Nepal and Japan flags crossed, a red glowing base with a camera and swoosh (`scripts/logo.js`, inline SVG sprite, used via `<use href="#gij">`). The favicon and app icons are the real channel picture (`public/favicon*`, `icon-*.png`). In the footer the emblem floats, tilts toward the pointer and has twinkling sparks.
+
 ## Type
 
 - **Instrument Serif:** headlines, used large with tight tracking.
@@ -43,6 +60,14 @@ Square corners and 1.5px ink borders. The dark button has an offset crimson shad
 | Thumbnails | Scale 3% on hover. |
 | While scrolling | Nothing moves. |
 | Reduced motion | `prefers-reduced-motion: reduce` turns all motion off. |
+
+## Icons
+
+Line icons (24px grid, 1.8 stroke) from `scripts/icons.js`. They draw themselves in once when their section arrives, and each has a small hover action: the eye glances, the clock hand turns, the bell rings, chat dots type, the hanko stamp presses.
+
+## No inline styles
+
+The CSP forbids `style=""`. Chart sizes use generated utility classes: `.p0`–`.p100` set `--p` (a percentage), `.n*` / `.span*` set grid columns, and `.d*` set animation delays.
 
 ## Content model
 

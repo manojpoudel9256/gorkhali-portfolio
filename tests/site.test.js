@@ -3,7 +3,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
-import { parseVideosPage, seriesOf } from "../lib/youtube.js";
+import { parseVideosPage, parseAboutPage, seriesOf } from "../lib/youtube.js";
 import { T } from "../scripts/content.js";
 
 execFileSync(process.execPath, ["scripts/build.js"], { env: { ...process.env, OFFLINE: "1" }, stdio: "ignore" });
@@ -15,7 +15,7 @@ test("YouTube page parser: ids, titles (|| cleaned), lengths, channel numbers", 
   const d = parseVideosPage(html, new Date("2026-10-28"));
   assert.equal(d.subscribers, "608");
   assert.equal(d.videoCount, 21);
-  assert.deepEqual(d.videos[0], { id: "abcdefghijk", title: "Salary in Japan — Real & honest", length: "13:55", views: "1.2K", ago: "1 month ago", month: "2026-09" });
+  assert.deepEqual(d.videos[0], { id: "abcdefghijk", title: "Salary in Japan — Real & honest", length: "13:55", views: "1.2K", viewCount: 1200, ago: "1 month ago", month: "2026-09" });
   assert.equal(seriesOf("Japanese IT Job Hunting Reality | How I Got 内定"), "shuukatsu");
   assert.equal(seriesOf("My 2 Years IT College Journey in Japan"), "senmon");
   assert.equal(seriesOf("Otaru Vlog"), "life");
@@ -70,4 +70,25 @@ test("every image has its size set (no layout shift) and an alt attribute", () =
     assert.match(img, /height="\d+"/, img);
     assert.match(img, /\balt="/, img);
   }
+});
+
+test("YouTube page parser: modern short view counts + accessibility labels", () => {
+  const mk = (id, a, b, c) =>
+    `{"contentId":"${id}","x":{"lockupMetadataViewModel":{"title":{"content":"T ${id}"},"metadata":{"contentMetadataViewModel":{"metadataRows":[{"metadataParts":[{"text":{"content":"${a}"},"accessibilityLabel":"${b}"},{"text":{"content":"${c}"},"accessibilityLabel":"x"}]}]}}}},"text":"1:02"}`;
+  const html = [
+    mk("aaaaaaaaaaa", "20K", "20 thousand views", "1mo ago"),
+    mk("bbbbbbbbbbb", "8.2K", "8.2 thousand views", "2 years ago"),
+    mk("ccccccccccc", "315", "379 views", "3 weeks ago"),
+    mk("ddddddddddd", "1.2M", "1.2 million views", "5 days ago"),
+  ].join(" ");
+  const v = parseVideosPage(html, new Date("2026-10-28")).videos;
+  assert.deepEqual(v.map((x) => x.views), ["20K", "8.2K", "315", "1.2M"]);
+  assert.deepEqual(v.map((x) => x.viewCount), [20000, 8200, 379, 1200000]);
+  assert.deepEqual(v.map((x) => x.ago), ["1mo ago", "2 years ago", "3 weeks ago", "5 days ago"]);
+});
+
+test("YouTube about parser: total views, joined date, subscribers", () => {
+  const html = `{"aboutChannelViewModel":{"subscriberCountText":"608 subscribers","viewCountText":"40,821 views","joinedDateText":{"content":"Joined Jan 28, 2023"}}}`;
+  assert.deepEqual(parseAboutPage(html), { totalViews: 40821, joined: "2023-01-28", subscribers: "608" });
+  assert.deepEqual(parseAboutPage("<html></html>"), { totalViews: null, joined: null, subscribers: null });
 });

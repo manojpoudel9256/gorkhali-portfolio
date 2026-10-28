@@ -12,7 +12,9 @@ export default async function handler(req, res) {
     return res.status(200).json({
       subscribers: d.subscribers,
       videoCount: d.videoCount,
-      videos: d.videos.slice(0, 12).map((v) => ({ id: v.id, title: v.title, length: v.length, series: seriesOf(v.title) })),
+      totalViews: d.totalViews,
+      joined: d.joined,
+      videos: d.videos.slice(0, 12).map((v) => ({ id: v.id, title: v.title, length: v.length, views: v.views, viewCount: v.viewCount, series: seriesOf(v.title) })),
     });
   } catch {
     res.setHeader("Cache-Control", "public, s-maxage=300");
