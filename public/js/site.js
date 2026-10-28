@@ -37,6 +37,14 @@
   /* ---------- the mobile menu closes after choosing a section ---------- */
   const menu = $(".menu");
   menu?.addEventListener("click", (e) => { if (e.target.closest("a")) menu.open = false; });
+  // the sheet sits right under the header and the page behind it stops scrolling
+  const header = $(".top");
+  const placeSheet = () => document.documentElement.style.setProperty("--top-h", header.getBoundingClientRect().bottom + "px");
+  menu?.addEventListener("toggle", () => {
+    if (menu.open) placeSheet();
+    document.documentElement.classList.toggle("menu-open", menu.open);
+  });
+  addEventListener("resize", () => { if (menu?.open) placeSheet(); });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && menu?.open) { menu.open = false; menu.querySelector("summary").focus(); }
   });
