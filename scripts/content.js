@@ -99,7 +99,7 @@ export const T = {
     numbers: {
       kicker: "01 — By the numbers",
       title: "The channel, measured.",
-      note: "Straight from YouTube, refreshed every time this site updates. Per-video views are rounded the way YouTube shows them.",
+      note: "Exact numbers, straight from YouTube and refreshed every few minutes.",
       stats: ["Total views", "Subscribers", "Videos", "Hours of video"],
       since: (d) => `On YouTube since ${d}`,
       seriesTitle: "Where the views come from",
@@ -240,7 +240,7 @@ export const T = {
     numbers: {
       kicker: "01 — 数字で見る",
       title: "チャンネルを、数字で。",
-      note: "YouTubeの公開データを、このサイトの更新ごとに反映しています。動画ごとの再生回数はYouTubeの表示どおり概数です。",
+      note: "YouTubeから取得した正確な数字です。数分ごとに自動で更新されます。",
       stats: ["総再生回数", "チャンネル登録者", "動画", "動画の総時間"],
       since: (d) => `${d}からYouTubeで発信`,
       seriesTitle: "再生回数の内訳",
@@ -300,8 +300,8 @@ export const T = {
       a
         .replace(/(\d+)\s*(?:yr|years?|y)\s*ago/i, "$1年前")
         .replace(/(\d+)\s*(?:mo|months?)\s*ago/i, "$1か月前")
-        .replace(/(\d+)\s*(?:weeks?|wk)\s*ago/i, "$1週間前")
-        .replace(/(\d+)\s*days?\s*ago/i, "$1日前")
+        .replace(/(\d+)\s*(?:weeks?|wk|w)\s*ago/i, "$1週間前")
+        .replace(/(\d+)\s*(?:days?|d)\s*ago/i, "$1日前")
         .replace(/(\d+)\s*(?:hours?|hr)\s*ago/i, "$1時間前")
         .replace(/(\d+)\s*(?:minutes?|min)\s*ago/i, "$1分前"),
   },

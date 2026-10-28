@@ -386,6 +386,7 @@ p { margin: 0; text-wrap: pretty; }
 .cols-area { min-width: 0; }
 .cols, .years { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .cols { height: var(--chart-h); align-items: end; border-bottom: 1.5px solid var(--ink); background-image: linear-gradient(var(--rule) 1px, transparent 1px); background-size: 100% 25%; }
+.cols.g1 { background-size: 100% 100%; } .cols.g2 { background-size: 100% 50%; } .cols.g3 { background-size: 100% 33.334%; } .cols.g5 { background-size: 100% 20%; }
 .col { position: relative; height: 100%; display: flex; align-items: flex-end; }
 .col i { display: block; width: 100%; height: var(--p); background: var(--c); transform-origin: center bottom; transition: opacity 160ms; }
 .cols:hover .col:not(:hover) i { opacity: 0.4; }
@@ -431,7 +432,7 @@ p { margin: 0; text-wrap: pretty; }
 .lb-row:hover .lb-title { text-decoration: underline; text-underline-offset: 3px; }
 .lb-bar { display: block; height: 8px; background: rgba(21, 21, 20, 0.07); }
 .lb-bar span { display: block; width: var(--p); height: 100%; background: var(--c); transform-origin: left center; }
-.lb-v { min-width: 4.5ch; text-align: right; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.lb-v { min-width: 6ch; text-align: right; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
 
 /* ---------- 05 field guide: a drawing legend ---------- */
 .legend { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1.5px solid var(--ink); background: var(--paper); }

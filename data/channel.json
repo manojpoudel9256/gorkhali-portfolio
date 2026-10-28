@@ -1,185 +1,215 @@
 {
- "fetchedAt": "2026-10-28T03:54:22.480Z",
+ "fetchedAt": "2026-10-28T08:06:09.098Z",
  "videos": [
   {
    "id": "udZB-kUNPBc",
-   "title": "IT Engineer Salary in Japan — Real PaySlip & Tax Reality!",
-   "length": "13:55",
-   "views": "20K",
-   "viewCount": 20000,
-   "ago": "1mo ago",
-   "month": "2026-09"
+   "title": "How to Get an IT Job in Japan | Study Route vs Direct Visa Sponsorship | 6-Month Honest Truth",
+   "length": "15:50",
+   "views": "380",
+   "viewCount": 380,
+   "ago": "7d ago",
+   "month": "2026-10",
+   "published": "2026-10-20"
   },
   {
    "id": "YS0tl6RVFFI",
+   "title": "IT Engineer Salary in Japan — Real PaySlip & Tax Reality!",
+   "length": "13:55",
+   "views": "20K",
+   "viewCount": 20775,
+   "ago": "1mo ago",
+   "month": "2026-08",
+   "published": "2026-08-31"
+  },
+  {
+   "id": "tA5QegxdCBw",
    "title": "Reality of Working in Japanese IT Company | Nepali in Japan",
    "length": "16:46",
    "views": "502",
    "viewCount": 502,
    "ago": "4mo ago",
-   "month": "2026-06"
-  },
-  {
-   "id": "tA5QegxdCBw",
-   "title": "My 2 Years IT College Journey in Japan (Reality, Cost, Skills, Jobs)",
-   "length": "15:23",
-   "views": "1K",
-   "viewCount": 1000,
-   "ago": "8mo ago",
-   "month": "2026-02"
+   "month": "2026-06",
+   "published": "2026-06-02"
   },
   {
    "id": "SVeaV58La0c",
+   "title": "My 2 Years IT College Journey in Japan (Reality, Cost, Skills, Jobs)",
+   "length": "15:23",
+   "views": "1K",
+   "viewCount": 1007,
+   "ago": "8mo ago",
+   "month": "2026-02",
+   "published": "2026-02-21"
+  },
+  {
+   "id": "KGJ8B0Dc7_0",
    "title": "【登別観光Vlog】友達と行く登別地獄谷北海道の大人気温泉地を日本語トークで巡る旅 — Noboribetsu Hell Valley",
    "length": "11:22",
    "views": "164",
    "viewCount": 164,
    "ago": "9mo ago",
-   "month": "2026-01"
+   "month": "2026-01",
+   "published": "2026-01-06"
   },
   {
-   "id": "KGJ8B0Dc7_0",
+   "id": "hPVdMRuahJc",
    "title": "Japanese IT Job Hunting Reality | How I Got 内定 After 10+ Interviews",
    "length": "4:21",
    "views": "315",
    "viewCount": 315,
    "ago": "9mo ago",
-   "month": "2026-01"
+   "month": "2025-12",
+   "published": "2025-12-31"
   },
   {
-   "id": "hPVdMRuahJc",
+   "id": "rR3g1hmiJTE",
    "title": "Shikotsu-Toya & Noboribetsu Nature Vlog (支笏洞爺・登別) | Hokkaido Vlogs",
    "length": "4:44",
    "views": "83",
    "viewCount": 83,
    "ago": "1y ago",
-   "month": "2025-10"
+   "month": "2025-10",
+   "published": "2025-10-11"
   },
   {
-   "id": "rR3g1hmiJTE",
+   "id": "DuZOVQoZvzg",
    "title": "Vegetables Prices in Japan — Senmon College's Conversation — Hokkaido Vlogs",
    "length": "13:12",
    "views": "187",
    "viewCount": 187,
    "ago": "1y ago",
-   "month": "2025-10"
-  },
-  {
-   "id": "DuZOVQoZvzg",
-   "title": "IT Courses in Japan: Everything You Need to Know in 2024!",
-   "length": "18:36",
-   "views": "2.4K",
-   "viewCount": 2400,
-   "ago": "1y ago",
-   "month": "2025-10"
+   "month": "2025-04",
+   "published": "2025-04-26"
   },
   {
    "id": "Vmf3hdqbSOs",
-   "title": "Part Time Job in Japan — Hokkaido vlog — Which type of job i did till now?",
-   "length": "11:21",
-   "views": "1.9K",
-   "viewCount": 1900,
-   "ago": "2y ago",
-   "month": "2024-10"
+   "title": "IT Courses in Japan: Everything You Need to Know in 2024!",
+   "length": "18:36",
+   "views": "2.4K",
+   "viewCount": 2444,
+   "ago": "1y ago",
+   "month": "2024-11",
+   "published": "2024-11-09"
   },
   {
    "id": "Ixd2jGoHsG4",
+   "title": "Part Time Job in Japan — Hokkaido vlog — Which type of job i did till now?",
+   "length": "11:21",
+   "views": "1.9K",
+   "viewCount": 1925,
+   "ago": "2y ago",
+   "month": "2024-09",
+   "published": "2024-09-21"
+  },
+  {
+   "id": "4satv-WJLzg",
    "title": "Japanese Conversation with Teachers and Friends — HJLA @gorkhaliinjapan 日本語",
    "length": "7:26",
    "views": "277",
    "viewCount": 277,
    "ago": "2y ago",
-   "month": "2024-10"
+   "month": "2024-04",
+   "published": "2024-04-14"
   },
   {
-   "id": "4satv-WJLzg",
+   "id": "HyncrIIeDRo",
    "title": "Travel vlog in Japan — Otaru Vlog — Hokkaido Vlogs",
    "length": "6:25",
    "views": "276",
    "viewCount": 276,
    "ago": "2y ago",
-   "month": "2024-10"
+   "month": "2024-02",
+   "published": "2024-02-24"
   },
   {
-   "id": "HyncrIIeDRo",
+   "id": "zLNx9SUWx1I",
    "title": "Hokkaido Greenland Amusement Park Vlog — 北海道グリーンランド　遊園地",
    "length": "15:47",
    "views": "768",
    "viewCount": 768,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-07",
+   "published": "2023-07-30"
   },
   {
-   "id": "zLNx9SUWx1I",
+   "id": "Mov1gHe44eo",
    "title": "First time Golf experience in Japan — Hokkaido vlogs",
    "length": "14:02",
    "views": "366",
    "viewCount": 366,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-05",
+   "published": "2023-05-05"
   },
   {
-   "id": "Mov1gHe44eo",
+   "id": "hEmnnvk2C4s",
    "title": "Tokyo Skytree Vlog — Nepali vlogger in Tokyo Japan",
    "length": "12:05",
    "views": "315",
    "viewCount": 315,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-04",
+   "published": "2023-04-15"
   },
   {
-   "id": "hEmnnvk2C4s",
+   "id": "Tjk-iSCWmoI",
    "title": "Temple vlog in Japan — Meeting my friend after 1 year in Japan",
    "length": "9:11",
    "views": "742",
    "viewCount": 742,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-04",
+   "published": "2023-04-10"
   },
   {
-   "id": "Tjk-iSCWmoI",
+   "id": "iGmAmKlCyOo",
    "title": "Hokkaido to Tokyo Vlog — Domestic flight in Japan",
    "length": "17:00",
    "views": "415",
    "viewCount": 415,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-04",
+   "published": "2023-04-05"
   },
   {
-   "id": "iGmAmKlCyOo",
+   "id": "J2yPSslCZ_I",
    "title": "Sports day in japan — Our School won the most prizes amongst all in this sports event",
    "length": "19:53",
    "views": "429",
    "viewCount": 429,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-02",
+   "published": "2023-02-27"
   },
   {
-   "id": "J2yPSslCZ_I",
+   "id": "YlAjimJt7zQ",
    "title": "Snow festival 2023 in Hokkaido Japan — Explore Japan with Nepalese",
    "length": "16:03",
    "views": "687",
    "viewCount": 687,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-02",
+   "published": "2023-02-06"
   },
   {
-   "id": "YlAjimJt7zQ",
+   "id": "LltPDqsIG5Q",
    "title": "Eating Ramen with friends in Japan — Winter Season in Hokkaido — JR",
    "length": "6:01",
    "views": "522",
    "viewCount": 522,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-02",
+   "published": "2023-02-03"
   },
   {
-   "id": "LltPDqsIG5Q",
+   "id": "sFcuoPCLylQ",
    "title": "My first vlog in Japan — Hokkaido vlog — Nepalese students in Japan",
    "length": "8:12",
    "views": "8.2K",
-   "viewCount": 8200,
+   "viewCount": 8241,
    "ago": "3y ago",
-   "month": "2023-10"
+   "month": "2023-01",
+   "published": "2023-01-28"
   }
  ],
  "subscribers": "608",

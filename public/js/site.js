@@ -1,6 +1,7 @@
 /* Gorkhali in Japan — small, dependency-free behaviour:
    video player (facade → privacy-enhanced embed on click), section reveals, contact form,
-   live refresh of the latest videos between deploys, and remembering the language. */
+   count-up numbers, chart tooltips, the footer emblem, and remembering the language.
+   (Fresh view counts come from the server: the pages themselves are re-rendered every few minutes.) */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -125,18 +126,4 @@
     }
   });
 
-  /* ---------- fresh videos between deploys ---------- */
-  const grid = $("#vgrid"), featured = $(".vcard.featured");
-  if (grid && featured && strings.series) {
-    fetch("/api/videos", { signal: AbortSignal.timeout(6000) })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (!d?.videos?.length || d.videos[0].id === featured.dataset.play) return;
-        const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-        const card = (v, big) => `<a class="vcard${big ? " featured" : ""}" href="https://www.youtube.com/watch?v=${esc(v.id)}" data-play="${esc(v.id)}" data-title="${esc(v.title)}"><span class="frame"><img src="https://i.ytimg.com/vi/${esc(v.id)}/${big ? "hqdefault" : "mqdefault"}.jpg" alt="" width="${big ? 480 : 320}" height="${big ? 270 : 180}" loading="lazy" decoding="async"><span class="dur mono" aria-hidden="true">${esc(v.length)}</span><span class="playbtn" aria-hidden="true"></span></span><span class="vmeta"><span class="vseries mono">${esc(strings.series[v.series] || "")}</span><span class="vtitle" lang="${/[぀-ヿ一-鿿]/.test(v.title) ? "ja" : "en"}">${esc(v.title)}</span></span></a>`;
-        featured.outerHTML = card(d.videos[0], true);
-        grid.innerHTML = d.videos.slice(1, 7).map((v) => card(v)).join("");
-      })
-      .catch(() => {});
-  }
 })();
