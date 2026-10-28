@@ -19,8 +19,8 @@ async function channel() {
   if (memo && Date.now() - memo.at < FRESH_MS) return memo.data;
   try {
     const live = await Promise.race([
-      fetchChannel(CHANNEL.handle, { timeoutMs: 7000, channelId: CHANNEL.id }),
-      new Promise((_, no) => setTimeout(() => no(new Error("TIMEOUT")), 9000)),
+      fetchChannel(CHANNEL.handle, { timeoutMs: 10000, channelId: CHANNEL.id }),
+      new Promise((_, no) => setTimeout(() => no(new Error("TIMEOUT")), 12000)),
     ]);
     memo = { at: Date.now(), data: live };
     return live;

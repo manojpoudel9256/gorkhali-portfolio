@@ -47,6 +47,11 @@ test("watch page parser: exact view count and publish date", () => {
   assert.equal(parseWatchStats(html, "otherid0000"), null);
 });
 
+test("watch page parser: the 'confirm you're not a bot' page served to cloud servers", () => {
+  const html = `{"playabilityStatus":{"status":"LOGIN_REQUIRED"},"videoDetails":{"videoId":"YS0tl6RVFFI","title":"x"}}...{"videoViewCountRenderer":{"viewCount":{"simpleText":"20,775 views"}}}...{"dateText":{"simpleText":"Aug 31, 2026"}}`;
+  assert.deepEqual(parseWatchStats(html, "YS0tl6RVFFI"), { viewCount: 20775, published: "2026-08-31" });
+});
+
 test("English and Japanese content have the same shape", () => {
   const shape = (o) => Object.keys(o).sort().map((k) => k + ":" + (Array.isArray(o[k]) ? o[k].length : typeof o[k]));
   assert.deepEqual(shape(T.en), shape(T.ja));
