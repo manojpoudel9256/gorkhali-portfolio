@@ -1,37 +1,32 @@
-# Gorkhali in Japan — Portfolio
+# Gorkhali in Japan — website
 
-Editorial portfolio website for the YouTube channel
-[**Gorkhali in Japan**](https://www.youtube.com/@gorkhaliinjapan) by Manoj Poudel —
-from the hills of Nepal to the heart of Tokyo.
+The website of [Gorkhali in Japan](https://www.youtube.com/@gorkhaliinjapan), the YouTube channel of Manoj Poudel, a Nepali software engineer in Tokyo. It is *the honest blueprint for an IT career in Japan*: senmon gakko, shuukatsu, real projects and life in Japan.
 
-![Landing page](landingpage.jpg)
+**Live:** https://gorkhali-portfolio.vercel.app · **日本語:** https://gorkhali-portfolio.vercel.app/ja/
 
-## Features
+## What's inside
 
-- 🎬 Full-bleed cinematic photo hero with a bottom info bar (since/route/
-  languages) and a full-screen premium mobile menu
-- 🇬🇧 / 🇯🇵 Full English–Japanese language toggle (flag button)
-- 🌙 / ☀️ Dark & light themes
-- 🔴 Live stats — real-time subscriber count, total views, and most-viewed video
-  views/likes (with baked fallbacks if the APIs are unreachable)
-- 📱 Mobile-first, works beautifully on desktop too
-- Zero dependencies — plain HTML/CSS/JS, no build step
+- Two pre-rendered pages, English (`/`) and 日本語 (`/ja/`), with hreflang, Open Graph and JSON-LD. Content is readable without JavaScript.
+- The latest videos from the channel, read at build time without an API key (`lib/youtube.js`), with `data/channel.json` as a fallback. `/api/videos` keeps the list fresh between deploys (cached for 6 hours).
+- Videos play in a privacy-enhanced YouTube embed only when clicked.
+- A contact form via Formspree.
+- A strict Content Security Policy and security headers (`vercel.json`), self-hosted fonts, and no third-party scripts.
+- The design system is documented in [DESIGN.md](DESIGN.md).
 
-## Run / Deploy
+## Edit
 
-Open `index.html` directly, or deploy the folder as-is to Vercel / Netlify /
-GitHub Pages (framework preset: **Other**, no build command).
+| What | Where |
+|---|---|
+| Words (EN + JA) | `scripts/content.js` |
+| Styles | `public/css/site.css` |
+| Behaviour | `public/js/site.js` |
+| Page structure | `scripts/build.js` |
 
-## Structure
+## Run
 
-```
-index.html      — page structure
-css/style.css   — design system (paper + ink, Indigo & Marigold accents)
-js/i18n.js      — EN/JA copy + video data
-js/main.js      — language/theme toggles, mobile menu, reveals, live stats
-Image.jpg       — portrait used in the About section
-hero-bg.webp    — hero background photo
-landingpage.jpg — screenshot for this README
+```sh
+npm run build   # fetches the latest videos, writes dist/
+npm test        # builds offline and checks the site's rules
 ```
 
-Designed & built by Manoj Poudel.
+Preview `dist/` with any static server. Vercel runs `npm run build` and serves `dist/` (see `vercel.json`).

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#f6f3eb"/>
+  <path d="M0 16H64M0 32H64M0 48H64M16 0V64M32 0V64M48 0V64" stroke="#1f4a8c" stroke-opacity=".18" stroke-width="1"/>
+  <rect x="6" y="6" width="52" height="52" fill="none" stroke="#151514" stroke-width="3.5"/>
+  <text x="32" y="41" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="700" font-size="21" fill="#151514">GiJ</text>
+  <rect x="44" y="44" width="10" height="10" fill="#c8102e"/>
+</svg>
